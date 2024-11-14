@@ -11,6 +11,12 @@ public class Doadores extends Usuario {
                 this.data_doacoes= data_doacoes;
                 this.id=id;
             }
+            public void doar(float valor_doacao){
+                this.valor+= valor_doacao;
+                
+                
+            }
+            
             
     
     
