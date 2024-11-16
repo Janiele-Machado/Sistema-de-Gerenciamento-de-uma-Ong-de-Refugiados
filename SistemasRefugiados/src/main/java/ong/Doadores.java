@@ -1,57 +1,85 @@
 
 package ong;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 public class Doadores extends Usuarios {
-   private LocalDate doacoes_date;
    
-   private  int id;
+   
+   
    private  String email;
-    private String doacoes_tipo;
-    private float doacoes_quant;
+   
     
-            public Doadores(String nome, String data_nasc, String nacionalidade,  String email, int id){
+    
+            public Doadores(String nome, String data_nasc, String nacionalidade,  String email){
                 super(nome,data_nasc,nacionalidade);
                 this.email= email;
-                this.id=id;
-                this.doacoes_quant = 0; // Inicializa a quantidade de doações com 0
-                this.doacoes_tipo = "Dinheiro"; // Valor padrão para tipo de doação
-                this.doacoes_date = LocalDate.now(); // Armazena a data atual como data da primeira doação
-            }
-            
-            public void doar_dinheiro(float quant_d){
-                if(quant_d>0){
-                    this.doacoes_quant+= quant_d;
-                    this.doacoes_tipo= "Dinheiro";
-                    this.doacoes_date=LocalDate.now();
-                    System.out.println("A doacao de "+quant_d+" R$ foi concluida muito obrigado pela doacao ");                                             
-                    
-                }else{
-                    System.out.println("desculpa quantidade devera ser maior que 0");
-                }
                 
-           
-            } public void doar_alimento(float alimento_kilo){
-                    if(alimento_kilo>0){
-                        this.doacoes_quant+= alimento_kilo;
-                        this.doacoes_tipo="Alimento nao perecivel";
-                        this.doacoes_date=LocalDate.now();
-                             
-                }else{
-                    System.out.println("desculpa quantidade devera ser maior que 0");
-                }
+              
+            }
+            
+            
+                    
+                
+            
+            
+            
+            
+   @Override
+            public void inserir(){
+                // conecta com o banco  
+                Connection conexao = new Conexao().getConexao();
+                 // Inserir usuário na tabela 'usuarios' (tabela genérica para usuários)
+                String sqlUsuario ="INSERT INTO usuarios(nome, nacionalidade, Data_nasc) VALUES(?, ?, ?)";
+                String sqlDoador= "INSERT INTO doadores(fk_usuarios_doadores_id,  doadores_email ) VALUES(?, ?)";  
+                try{
+                     // Começar uma transação para garantir consistência
+                        conexao.setAutoCommit(false);
+                        
+                        
+                    PreparedStatement comandoUsuario = conexao.prepareStatement(sqlUsuario, PreparedStatement.RETURN_GENERATED_KEYS);
+                    comandoUsuario.setString(1, this.nome);
+                    comandoUsuario.setString(2, this.nacionalidade);
+                    comandoUsuario.setString(3, this.data_nasc);
+                    comandoUsuario.executeUpdate();
+                     
+                     // Obter o id gerado automaticamente (caso o banco utilize auto incremento)
+                    ResultSet rs = comandoUsuario.getGeneratedKeys();
+                    rs.next();
+                    int doadores_id = rs.getInt(1);
+                    
+                    // Inserir dados na tabela 'doadores'
+                    PreparedStatement comandoDoador = conexao.prepareStatement(sqlDoador);
+                    comandoDoador.setInt(1,  doadores_id );
+                    comandoDoador.setString(2, this.email);
+                    comandoDoador.executeUpdate();
+                    
+                    // Confirmar a transação
+                        conexao.commit();
+                        System.out.println("Doador inserido com sucesso!");
+                        
+                        // Fechar as conexões
+                    comandoUsuario.close();
+                    comandoDoador.close();
+                    conexao.setAutoCommit(true);
+                    
+                    
+                    
+                    
+                    
+                }catch(Exception e){
+                    try {
+                    // Em caso de erro, desfaz a transação
+                    conexao.rollback();
+                    } catch (SQLException rollbackEx) {
+                    System.out.println("Erro ao reverter a transação: " + rollbackEx.getMessage());
+                     }
+                    System.out.println("Erro ao inserir doador: " + e.getMessage());
                     
                 }
-            
-            public int getid(){
-                return id;
             }
-            public String getEmail(){
-                return email;
-            }
-            public float getDoacoes(){
-                return doacoes_quant;
-            }
-            
             
             
             
