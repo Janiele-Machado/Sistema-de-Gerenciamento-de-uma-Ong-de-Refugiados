@@ -1,5 +1,6 @@
 
 package ong;
+import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import static javax.management.Query.or;
@@ -10,7 +11,13 @@ public class App {
         Scanner scan = new Scanner(System.in);
         int opc_principal;
         int opc1=0;
-        
+        String email_ins;
+        String nome_ins;
+        String nacionalidade_ins;
+        String datanasc_ins;
+        String doacoes_ins= "dinheiro";
+        float doecoesquant_ins=0;
+        String data= "12";
         
 
         opc_principal = 0;
@@ -47,6 +54,19 @@ public class App {
                                 System.out.println("deseja cadastra um doador (S)im ou (N)ao");
                                 String s_n= scan.nextLine();
                                 while(s_n.equals("sim") || s_n.equals("s")){
+                                    System.out.println("digite o seu nome por favor");
+                                    nome_ins= scan.nextLine();
+                                    System.out.println("digite seu email por favor");
+                                    email_ins=scan.nextLine();
+                                    System.out.println("digite sua data de nascimento por favor");
+                                    datanasc_ins=scan.nextLine();
+                                    System.out.println("digite sua nacionalidade por favor");
+                                    nacionalidade_ins = scan.nextLine();
+                                     Doadores doador = new Doadores(nome_ins,datanasc_ins,nacionalidade_ins,email_ins);
+                                     doador.inserir();
+                                    
+                                    
+                                    
                             
                             
                             
