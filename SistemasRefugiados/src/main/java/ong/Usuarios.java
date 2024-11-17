@@ -16,7 +16,7 @@ public class Usuarios {
         this.nacionalidade = nacionalidade;
     }
     public void inserir() {
-//        grava um aluno no banco
+//        grava um usuario no banco
 //        Conexao c = new Conexao();
 //        Connection conexao = c.getConexao();
         Connection conexao = new Conexao().getConexao();
