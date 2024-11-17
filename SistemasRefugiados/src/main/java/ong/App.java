@@ -10,7 +10,7 @@ public class App {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         int opc_principal;
-        int opc1 = 0;
+        int opc1;
         String estado_ins;
         String email_ins;
         String nome_ins;
@@ -25,26 +25,31 @@ public class App {
         while (opc_principal != 6) {
             try {
 
-                System.out.println("-----Menu de Opcoes---------");
-                System.out.println("1-Cadastro de usuarios");
-                System.out.println("2-Registrar doacoes");
-                System.out.println("3-Listagem de usuarios ");
-                System.out.println("4-Editar Cadastros");
-                System.out.println("5-Excluir Cadastros");
-                System.out.println("6-Sair");
+                System.out.println("-------Menu de Opcoes--------");
+                System.out.println("|1-Cadastro de usuarios     |");
+                System.out.println("|2-Registrar doacoes        |");
+                System.out.println("|3-Listagem de usuarios     |");
+                System.out.println("|4-Editar Cadastros         |");
+                System.out.println("|5-Excluir Cadastros        |");
+                System.out.println("|6-Sair                     |");
+                System.out.println("-----------------------------");
                 String opct = scan.nextLine();
                 opc_principal = Integer.parseInt(opct);
 
                 if (opc_principal == 1) {
+                    opc1=0;
                     while (opc1 != 4) {
                         try {
-                            System.out.println("ola digite qual tipo de usuario quer cadastrar");
-                            System.out.println("1 refugiado");
-                            System.out.println("2 voluntario");
-                            System.out.println("3 doadores");
-                            System.out.println("4 sair");
+                            System.out.println("-------------------------------------------------");
+                            System.out.println("|Ola digite qual tipo de usuario quer cadastrar:|");
+                            System.out.println("|1-Refugiado                                    |");
+                            System.out.println("|2-Voluntario                                   |");
+                            System.out.println("|3-Doadores                                     |");
+                            System.out.println("|4-Sair                                         |");
+                            System.out.println("-------------------------------------------------");
                             String opc1t = scan.nextLine();
                             opc1 = Integer.parseInt(opc1t);
+
                             if (opc1 == 1) {
 
                                 System.out.println("Deseja cadastrar um refugiado (S)im ou (N)ao");
@@ -62,7 +67,7 @@ public class App {
                                     Refugiados refugiado = new Refugiados(nome_ins, datanasc_ins, nacionalidade_ins, estado_ins);
                                     refugiado.inserir();
 
-                                    System.out.println("Deseja cadastrar outro refugiado (S)im ou (N)ao");
+                                    System.out.println("Deseja cadastrar outro refugiado (S)im ou (N)ao:");
                                     s_n = scan.nextLine();
 
                                 }
@@ -70,7 +75,7 @@ public class App {
                             } else if (opc1 == 2) {
 
                             } else if (opc1 == 3) {
-                                System.out.println("deseja cadastra um doador (S)im ou (N)ao");
+                                System.out.println("Deseja cadastrar um doador (S)im ou (N)ao");
                                 String s_n = scan.nextLine();
                                 while (s_n.equals("sim") || s_n.equals("s")) {
                                     System.out.println("digite o seu nome por favor");
@@ -84,14 +89,14 @@ public class App {
                                     Doadores doador = new Doadores(nome_ins, datanasc_ins, nacionalidade_ins, email_ins);
                                     doador.inserir();
 
-                                    System.out.println("deseja cadastra outro doador (S)im ou (N)ao");
+                                    System.out.println("Deseja cadastrar outro doador (S)im ou (N)ao");
                                     s_n = scan.nextLine();
 
                                 }
 
-                            }else if (opc1==4) {
+                            } else if (opc1 == 4) {
                                 System.out.println("Direcionando voce para o menu principal,Obrigada");
-                            }  else {
+                            } else {
                                 System.out.println("Erro, digite um numero valido");
                             }
                         } catch (NumberFormatException e) {
