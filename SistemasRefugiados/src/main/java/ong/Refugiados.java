@@ -27,18 +27,19 @@ public class Refugiados extends Usuarios {
             // Começar uma transação para garantir consistência
             conexao.setAutoCommit(false);
 
+            //inserindo dados na tabela usuários
             PreparedStatement comandoUsuario = conexao.prepareStatement(sqlUsuario, PreparedStatement.RETURN_GENERATED_KEYS);
             comandoUsuario.setString(1, this.nome);
             comandoUsuario.setString(2, this.nacionalidade);
             comandoUsuario.setString(3, this.data_nasc);
             comandoUsuario.executeUpdate();
 
-            // Obter o id gerado automaticamente (caso o banco utilize auto incremento)
+            // Obter o id gerado automaticamente (pois o banco utiliza auto incremento)
             ResultSet rs = comandoUsuario.getGeneratedKeys();
             rs.next();
             int refugiados_id = rs.getInt(1);
 
-            // Inserir dados na tabela 'refugiados'
+            // Inserindo dados na tabela refugiados
             PreparedStatement comandoRefugiado = conexao.prepareStatement(sqlRefugiado);
             comandoRefugiado.setString(1, this.estado);
             comandoRefugiado.setInt(2, refugiados_id);
@@ -60,7 +61,7 @@ public class Refugiados extends Usuarios {
             } catch (SQLException rollbackEx) {
                 System.out.println("Erro ao reverter a transação: " + rollbackEx.getMessage());
             }
-            System.out.println("Erro ao inserir refugiado: " + e.getMessage());
+            System.out.println("Erro ao inserir refugiado: " + e.getMessage()); //retorno para o caso de dar erro no processo;
         }
     }
 }
