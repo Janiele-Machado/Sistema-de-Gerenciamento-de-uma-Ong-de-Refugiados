@@ -11,6 +11,7 @@ public class App {
         Scanner scan = new Scanner(System.in);
         int opc_principal;
         int opc1;
+        String habilidade_ins;
         String estado_ins;
         String email_ins;
         String nome_ins;
@@ -37,7 +38,7 @@ public class App {
                 opc_principal = Integer.parseInt(opct);
 
                 if (opc_principal == 1) {
-                    opc1=0;
+                    opc1 = 0;
                     while (opc1 != 4) {
                         try {
                             System.out.println("-------------------------------------------------");
@@ -73,6 +74,28 @@ public class App {
                                 }
 
                             } else if (opc1 == 2) {
+                                
+                                System.out.println("Deseja cadastrar um voluntario (S)im ou (N)ao");
+                                String s_n = scan.nextLine();
+
+                                while (s_n.equals("sim") || s_n.equals("s")) {
+                                    System.out.println("Digite o seu nome por favor:");
+                                    nome_ins = scan.nextLine();
+                                    System.out.println("Digite sua data de nascimento por favor:");
+                                    datanasc_ins = scan.nextLine();
+                                    System.out.println("Digite sua nacionalidade por favor:");
+                                    nacionalidade_ins = scan.nextLine();
+                                    System.out.println("Digite seu email por favor:");
+                                    email_ins = scan.nextLine();
+                                    System.out.println("Digite sua Habilidade(Exemplo:Forca,conhecimento de medicina e etc):");
+                                    habilidade_ins=scan.nextLine();
+                                    Voluntarios voluntario = new Voluntarios(nome_ins, datanasc_ins, nacionalidade_ins, email_ins,habilidade_ins);
+                                    voluntario.inserir();
+
+                                    System.out.println("Deseja cadastrar outro Voluntario (S)im ou (N)ao:");
+                                    s_n = scan.nextLine();
+
+                                }
 
                             } else if (opc1 == 3) {
                                 System.out.println("Deseja cadastrar um doador (S)im ou (N)ao");
