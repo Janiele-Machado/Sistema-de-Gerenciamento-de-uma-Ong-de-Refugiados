@@ -128,6 +128,27 @@ public class App {
                     }
 
                 } else if (opc_principal == 2) {
+                    
+                    System.out.println("Ola para doar digite seu email");
+                    String email_ins2 = scan.nextLine();
+                    System.out.println("digite seu id");
+                    int dd_aux_id = scan.nextInt();
+                    
+                    // futuramente farei um metodo para verificar 
+                    
+                    
+                    System.out.println("digite o tipo de doaçao");
+                    String tipo_d = scan.nextLine();
+                    System.out.println("digite e quantidade ");
+                    String quant_d = scan.nextLine();
+                    System.out.println("digite a data da doaçao");
+                    String date_d =scan.nextLine();
+                    Doacoes doacoes = new Doacoes(tipo_d, quant_d, date_d);
+                    doacoes.inserir();
+                    
+                            
+                   
+                   
 
                 } else if (opc_principal == 3) {
 
