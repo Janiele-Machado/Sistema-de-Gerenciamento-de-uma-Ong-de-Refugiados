@@ -10,6 +10,8 @@ public class Doadores extends Usuarios {
    
    
    private  String email;
+   private int doadores_id;
+           
    
     
     
@@ -18,6 +20,10 @@ public class Doadores extends Usuarios {
                 this.email= email;
                 
               
+            }
+            
+            public int getDoadores_id(){
+                return doadores_id;
             }
             
             
@@ -48,11 +54,11 @@ public class Doadores extends Usuarios {
                      // Obter o id gerado automaticamente (caso o banco utilize auto incremento)
                     ResultSet rs = comandoUsuario.getGeneratedKeys();
                     rs.next();
-                    int doadores_id = rs.getInt(1);
+                     doadores_id = rs.getInt(1);
                     
                     // Inserir dados na tabela 'doadores'
                     PreparedStatement comandoDoador = conexao.prepareStatement(sqlDoador);
-                    comandoDoador.setInt(1,  doadores_id );
+                    comandoDoador.setInt(1, this.doadores_id );
                     comandoDoador.setString(2, this.email);
                     comandoDoador.executeUpdate();
                     
