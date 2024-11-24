@@ -128,6 +128,9 @@ public class App {
                     }
 
                 } else if (opc_principal == 2) {
+                   System.out.println("Deseja fazer uma doaçao (S)im ou (N)ao");
+                   String s_n2 = scan.nextLine();
+                  while (s_n2.equals("sim") || s_n2.equals("s")) {
                     
                     System.out.println("Ola para doar digite seu email");
                     String email_ins2 = scan.nextLine();
@@ -146,7 +149,12 @@ public class App {
                     Doacoes doacoes = new Doacoes(tipo_d, quant_d, date_d);
                     doacoes.inserir();
                     
-                            
+                    
+                     System.out.println("Deseja cadastrar outro Voluntario (S)im ou (N)ao:");
+                     s_n2 = scan.nextLine();
+                    
+                    
+                  }         
                    
                    
 
