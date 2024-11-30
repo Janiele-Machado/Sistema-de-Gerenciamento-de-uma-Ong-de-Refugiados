@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.concurrent.ExecutionException;
 
 public class Doadores extends Usuarios {
+
     private String email;
     private int doadores_id;
 
@@ -82,7 +83,7 @@ public class Doadores extends Usuarios {
             if (rs.next()) {
                 int ver = rs.getInt("doadores_id");
                 if (ver == id_verificar) {
-                    System.out.println("ola " + this.nome);
+                    System.out.println("ola ");
                     return true;
 
                 } else {
@@ -108,9 +109,39 @@ public class Doadores extends Usuarios {
             } catch (SQLException e) {
                 System.out.println(e);
             }
-            
+
         }
 
+    }
+
+    public void listar() {
+        Connection conexao = new Conexao().getConexao();
+        String sqlListar = "select *from usuarios join  doadores on usu_id=doadores_id;";
+        try {
+            PreparedStatement comandoListar = conexao.prepareStatement(sqlListar);
+            ResultSet rs2 = comandoListar.executeQuery();
+
+            while (rs2.next()) {
+                System.out.println("id: " + rs2.getInt("usu_id"));
+                System.out.println("nome: " + rs2.getString("nome"));
+                System.out.println("nacionalidade: " + rs2.getString("nacionalidade"));
+                System.out.println("data de nascimento:" + rs2.getString("Data_nasc"));
+                System.out.println("email: " + rs2.getString("doadores_email"));
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+
+            try {
+                if (conexao != null && !conexao.isClosed()) {
+                    conexao.close();
+                }
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+
+        }
     }
 
 }
