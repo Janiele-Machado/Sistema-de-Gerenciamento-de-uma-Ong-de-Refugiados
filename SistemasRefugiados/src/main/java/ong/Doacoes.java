@@ -13,10 +13,11 @@ public class Doacoes {
    private String  doacoes_date;
    private int doadorid;
     
-   public  Doacoes(String doacoes_tipo, String doacoes_quant, String  doacoes_date){
+   public  Doacoes(String doacoes_tipo, String doacoes_quant, String  doacoes_date,int doadorid){
        this.doacoes_tipo= doacoes_tipo;
        this.doacoes_quant= doacoes_quant;
        this.doacoes_date = doacoes_date;
+       this.doadorid= doadorid;
        
    }
   public void setDoadorid(int dd_id){
@@ -28,7 +29,7 @@ public class Doacoes {
    
     public void inserir(){
        Connection conexao = new Conexao().getConexao();
-         String sqldoacao =  "INSERT INTO (doacoes_tipo, doacoes_quant ,doacoes_date, fk_doadores_doadores_id) VALUES(?,?,?,?)";
+         String sqldoacao =  "INSERT INTO doacoes (doacoes_tipo, doacoes_quant ,doacoes_date, fk_doadores_doadores_id) VALUES(?,?,?,?)";
          
             try{
                 // Começar uma transação para garantir consistência
@@ -45,7 +46,7 @@ public class Doacoes {
                         System.out.println("Doador inserido com sucesso!");
                         
                         // Fechar as conexões
-                    comandoDoacoes.close();
+                    
                     comandoDoacoes.close();
                     conexao.setAutoCommit(true);
                 }catch(Exception e){
