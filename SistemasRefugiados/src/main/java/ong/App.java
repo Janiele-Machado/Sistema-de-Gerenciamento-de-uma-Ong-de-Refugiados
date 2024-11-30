@@ -75,7 +75,7 @@ public class App {
                                 }
 
                             } else if (opc1 == 2) {
-                                
+
                                 System.out.println("Deseja cadastrar um voluntario (S)im ou (N)ao");
                                 String s_n = scan.nextLine();
 
@@ -89,8 +89,8 @@ public class App {
                                     System.out.println("Digite seu email por favor:");
                                     email_ins = scan.nextLine();
                                     System.out.println("Digite sua Habilidade(Exemplo:Forca,conhecimento de medicina e etc):");
-                                    habilidade_ins=scan.nextLine();
-                                    Voluntarios voluntario = new Voluntarios(nome_ins, datanasc_ins, nacionalidade_ins, email_ins,habilidade_ins);
+                                    habilidade_ins = scan.nextLine();
+                                    Voluntarios voluntario = new Voluntarios(nome_ins, datanasc_ins, nacionalidade_ins, email_ins, habilidade_ins);
                                     voluntario.inserir();
 
                                     System.out.println("Deseja cadastrar outro Voluntario (S)im ou (N)ao:");
@@ -129,42 +129,71 @@ public class App {
                     }
 
                 } else if (opc_principal == 2) {
-                   System.out.println("Deseja fazer uma doaçao (S)im ou (N)ao");
-                   String s_n2 = scan.nextLine();
-                  while (s_n2.equals("sim") || s_n2.equals("s")) {
-                    
-                    System.out.println("Ola para doar digite seu email");
-                    String email_ins2 = scan.nextLine();
-                    System.out.println("digite seu id");
-                    int dd_aux_id = scan.nextInt();
-                    scan.nextLine();
-                    
-                    // futuramente farei um metodo para verificar 
-                    Doadores d1 = new Doadores(null, null, null,email_ins2 );
-                    boolean verc= d1.verifivar(email_ins2, dd_aux_id);
-                    
-                    if(verc== true){
-                    System.out.println("digite o tipo de doaçao");
-                    String tipo_d = scan.nextLine();
-                    System.out.println("digite e quantidade ");
-                    String quant_d = scan.nextLine();
-                    System.out.println("digite a data da doaçao");
-                    String date_d =scan.nextLine();
-                    Doacoes doacoes = new Doacoes(tipo_d, quant_d, date_d, dd_aux_id);
-                    doacoes.inserir();
-                    }else{
-                        System.out.println("ops algo deu errado");
+                    System.out.println("Deseja fazer uma doaçao (S)im ou (N)ao");
+                    String s_n2 = scan.nextLine();
+                    while (s_n2.equals("sim") || s_n2.equals("s")) {
+
+                        System.out.println("Ola para doar digite seu email");
+                        String email_ins2 = scan.nextLine();
+                        System.out.println("digite seu id");
+                        int dd_aux_id = scan.nextInt();
+                        scan.nextLine();
+
+                        // futuramente farei um metodo para verificar 
+                        Doadores d1 = new Doadores(null, null, null, email_ins2);
+                        boolean verc = d1.verifivar(email_ins2, dd_aux_id);
+
+                        if (verc == true) {
+                            System.out.println("digite o tipo de doaçao");
+                            String tipo_d = scan.nextLine();
+                            System.out.println("digite e quantidade ");
+                            String quant_d = scan.nextLine();
+                            System.out.println("digite a data da doaçao");
+                            String date_d = scan.nextLine();
+                            Doacoes doacoes = new Doacoes(tipo_d, quant_d, date_d, dd_aux_id);
+                            doacoes.inserir();
+                        } else {
+                            System.out.println("ops algo deu errado");
+                        }
+
+                        System.out.println("Deseja cadastrar outro Voluntario (S)im ou (N)ao:");
+                        s_n2 = scan.nextLine();
+
                     }
-                    
-                     System.out.println("Deseja cadastrar outro Voluntario (S)im ou (N)ao:");
-                     s_n2 = scan.nextLine();
-                    
-                    
-                  }      
-                   
-                   
 
                 } else if (opc_principal == 3) {
+                    try {
+                        for (;;) {
+                            System.out.println("ola digite qual tipo de usuario deseja listar");
+                            System.out.println("1 doadores");
+                            System.out.println("2 voluntarios");
+                            System.out.println("3 Refugiados");
+                            System.out.println("4 sair da listagem");
+                            String opc3 = scan.nextLine();
+                            int opc3t = Integer.parseInt(opc3);
+
+                            if (opc3t == 1) {
+                                Doadores d2 = new Doadores(null, null, null, null);
+                                d2.listar();
+
+                            } else if (opc3t == 2) {
+
+                            } else if (opc3t == 3) {
+                                
+                            }else if(opc3t== 4){
+                                System.out.println("...");
+                                break;
+                            } else {
+                                System.out.println("digite um numero valido");
+
+                            }
+                            
+                            
+                        }
+
+                    } catch (NumberFormatException e) {
+                        System.out.println("por favor digite um numero valido");
+                    }
 
                 } else if (opc_principal == 4) {
 
