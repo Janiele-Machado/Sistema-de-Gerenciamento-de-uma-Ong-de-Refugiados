@@ -150,7 +150,7 @@ public class App {
                     String quant_d = scan.nextLine();
                     System.out.println("digite a data da doaçao");
                     String date_d =scan.nextLine();
-                    Doacoes doacoes = new Doacoes(tipo_d, quant_d, date_d);
+                    Doacoes doacoes = new Doacoes(tipo_d, quant_d, date_d, dd_aux_id);
                     doacoes.inserir();
                     }else{
                         System.out.println("ops algo deu errado");
