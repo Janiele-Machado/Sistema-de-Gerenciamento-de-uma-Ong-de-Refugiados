@@ -11,6 +11,7 @@ public class App {
         Scanner scan = new Scanner(System.in);
         int opc_principal;
         int opc1;
+        int id_dd_v;
         String habilidade_ins;
         String estado_ins;
         String email_ins;
@@ -136,10 +137,13 @@ public class App {
                     String email_ins2 = scan.nextLine();
                     System.out.println("digite seu id");
                     int dd_aux_id = scan.nextInt();
+                    scan.nextLine();
                     
                     // futuramente farei um metodo para verificar 
+                    Doadores d1 = new Doadores(null, null, null,email_ins2 );
+                    boolean verc= d1.verifivar(email_ins2, dd_aux_id);
                     
-                    
+                    if(verc== true){
                     System.out.println("digite o tipo de doaçao");
                     String tipo_d = scan.nextLine();
                     System.out.println("digite e quantidade ");
@@ -148,13 +152,15 @@ public class App {
                     String date_d =scan.nextLine();
                     Doacoes doacoes = new Doacoes(tipo_d, quant_d, date_d);
                     doacoes.inserir();
-                    
+                    }else{
+                        System.out.println("ops algo deu errado");
+                    }
                     
                      System.out.println("Deseja cadastrar outro Voluntario (S)im ou (N)ao:");
                      s_n2 = scan.nextLine();
                     
                     
-                  }         
+                  }      
                    
                    
 
