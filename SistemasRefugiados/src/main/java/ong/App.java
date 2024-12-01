@@ -134,31 +134,37 @@ public class App {
                     String s_n2 = scan.nextLine();
                     while (s_n2.equals("sim") || s_n2.equals("s")) {
 
-                        System.out.println("Ola para doar digite seu email");
-                        String email_ins2 = scan.nextLine();
-                        System.out.println("digite seu id");
-                        int dd_aux_id = scan.nextInt();
-                        scan.nextLine();
+                        try {
+                            System.out.println("Ola para doar digite seu email");
+                            String email_ins2 = scan.nextLine();
+                            System.out.println("digite seu id");
+                            String dd_aux_idt = scan.nextLine();
+                            int dd_aux_id = Integer.parseInt(dd_aux_idt);
 
-                        // futuramente farei um metodo para verificar 
-                        Doadores d1 = new Doadores(null, null, null, email_ins2);
-                        boolean verc = d1.verifivar(email_ins2, dd_aux_id);
+                            // futuramente farei um metodo para verificar 
+                            Doadores d1 = new Doadores(null, null, null, email_ins2);
+                            boolean verc = d1.verifivar(email_ins2, dd_aux_id);
 
-                        if (verc == true) {
-                            System.out.println("digite o tipo de doaçao");
-                            String tipo_d = scan.nextLine();
-                            System.out.println("digite e quantidade ");
-                            String quant_d = scan.nextLine();
-                            System.out.println("digite a data da doaçao");
-                            String date_d = scan.nextLine();
-                            Doacoes doacoes = new Doacoes(tipo_d, quant_d, date_d, dd_aux_id);
-                            doacoes.inserir();
-                        } else {
-                            System.out.println("ops algo deu errado");
+                            if (verc == true) {
+                                System.out.println("digite o tipo de doaçao");
+                                String tipo_d = scan.nextLine();
+                                System.out.println("digite e quantidade ");
+                                String quant_d = scan.nextLine();
+                                System.out.println("digite a data da doaçao");
+                                String date_d = scan.nextLine();
+                                Doacoes doacoes = new Doacoes(tipo_d, quant_d, date_d, dd_aux_id);
+                                doacoes.inserir();
+                            } else {
+                                System.out.println("ops algo deu errado");
+                            }
+
+                        } catch (NumberFormatException e) {
+                            System.out.println("erro id so pode ter numeros tente novamente");
+
+                            System.out.println("Deseja cadastrar outro Voluntario (S)im ou (N)ao:");
+                            s_n2 = scan.nextLine();
+
                         }
-
-                        System.out.println("Deseja cadastrar outro Voluntario (S)im ou (N)ao:");
-                        s_n2 = scan.nextLine();
 
                     }
 
@@ -168,7 +174,7 @@ public class App {
 
                             System.out.println("ola digite qual tipo de usuario deseja listar");
                             for (int i = 0; i < tipo_usu.length; i++) {
-                                System.out.println((i+1)+"-" + tipo_usu[i]);
+                                System.out.println((i + 1) + "-" + tipo_usu[i]);
                             }
                             System.out.println("4 sair da listagem");
                             String opc3 = scan.nextLine();
@@ -199,15 +205,17 @@ public class App {
                 } else if (opc_principal == 4) {
 
                 } else if (opc_principal == 5) {
+                    try{
 
                     System.out.println("ola digite qual tipo de usuario deseja excluir");
                     for (int i = 0; i < tipo_usu.length; i++) {
-                        System.out.println( (i+1)+"- " + tipo_usu[i]);
+                        System.out.println((i + 1) + "- " + tipo_usu[i]);
                     }
 
                     System.out.println("4 sair ");
-                    int opc5 = scan.nextInt();
-                    scan.nextLine();
+                    String opc5t = scan.nextLine();
+                    int opc5 = Integer.parseInt(opc5t);
+                    
 
                     if (opc5 == 1) {
                         System.out.println("digite o nome do usuario que deseja excluir");
@@ -215,8 +223,8 @@ public class App {
                         System.out.println("digite o email de doador");
                         String email_excl = scan.nextLine();
                         System.out.println("Digite o id de doador");
-                        int dd_id = scan.nextInt();
-                        scan.nextLine();
+                        String dd_idt = scan.nextLine();
+                        int dd_id = Integer.parseInt(dd_idt);
 
                         Doadores d3 = new Doadores(nome_excl, null, null, email_excl);
                         if (d3.verifivar(email_excl, dd_id)) {
@@ -224,6 +232,11 @@ public class App {
                         }
 
                     }
+                    
+                   }catch(NumberFormatException e){
+                        System.out.println("ops algo deu errado verifique se esta preenchendo corretamente e tente novamente");
+                       
+                   }
 
                 } else if (opc_principal == 6) {
                     System.out.println("Obrigado por utilizar nosso sistema");
