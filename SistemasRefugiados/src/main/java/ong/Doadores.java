@@ -144,4 +144,28 @@ public class Doadores extends Usuarios {
         }
     }
 
+    public void excluir() {
+        Connection conexao = new Conexao().getConexao();
+        String sqlExcluir_doador = "DELETE FROM  doadores WHERE doadores_email= ?";
+        String sqlExcluir_usu = "DELETE FROM usuarios WHERE nome= ?";
+        try {
+            PreparedStatement comandoExcluir = conexao.prepareStatement(sqlExcluir_doador);
+            comandoExcluir.setString(1, this.email);
+            comandoExcluir.executeUpdate();
+
+            PreparedStatement comando_excluir_d = conexao.prepareStatement(sqlExcluir_usu);
+            comando_excluir_d.setString(1, this.nome);
+            comando_excluir_d.executeUpdate();
+            
+            System.out.println("Doador apagado com sucesso");
+            comandoExcluir.close();
+            comando_excluir_d.close();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+
+        }
+
+    }
+
 }
