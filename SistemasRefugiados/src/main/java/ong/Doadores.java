@@ -21,6 +21,10 @@ public class Doadores extends Usuarios {
     public int getDoadores_id() {
         return doadores_id;
     }
+    public void  setDoadores_id(int dd){
+        this.doadores_id = dd;
+        
+    }
 
     @Override
     public void inserir() {
@@ -74,14 +78,14 @@ public class Doadores extends Usuarios {
     public boolean verifivar(String email_verificar, int id_verificar) {
 
         Connection conexao = new Conexao().getConexao();
-        String sqlVerificar = "SELECT doadores_id  FROM doadores WHERE doadores_email= ?";
+        String sqlVerificar = "SELECT fk_usuarios_doadores_id  FROM doadores WHERE doadores_email= ?";
         try {
             PreparedStatement comandoVerificar = conexao.prepareStatement(sqlVerificar);
             comandoVerificar.setString(1, email_verificar);
             ResultSet rs = comandoVerificar.executeQuery();
 
             if (rs.next()) {
-                int ver = rs.getInt("doadores_id");
+                int ver = rs.getInt("fk_usuarios_doadores_id");
                 if (ver == id_verificar) {
                     System.out.println("ola ");
                     return true;
@@ -116,7 +120,7 @@ public class Doadores extends Usuarios {
 
     public void listar() {
         Connection conexao = new Conexao().getConexao();
-        String sqlListar = "select *from usuarios join  doadores on usu_id=doadores_id;";
+        String sqlListar = "select *from usuarios join  doadores on usu_id= fk_usuarios_doadores_id;";
         try {
             PreparedStatement comandoListar = conexao.prepareStatement(sqlListar);
             ResultSet rs2 = comandoListar.executeQuery();
@@ -166,6 +170,35 @@ public class Doadores extends Usuarios {
 
         }
 
+    }
+    public void alterar(){
+        Connection conexao = new Conexao().getConexao();
+        String sqlAlterar = "UPDATE  usuarios  SET nome =?, Data_nasc=?, nacionalidade=? WHERE  usu_id=?";
+        String sqlAlterardoadores = "UPDATE  doadores SET doadores_email=? WHERE fk_usuarios_doadores_id=?";
+        try{
+            PreparedStatement comandoAlterar = conexao.prepareStatement(sqlAlterar);
+            comandoAlterar.setString(1, this.nome);
+            comandoAlterar.setString(2, this.data_nasc);
+            comandoAlterar.setString(3, this.nacionalidade);
+            comandoAlterar.setInt(4, this.doadores_id);
+            comandoAlterar.executeUpdate();
+            
+            
+            PreparedStatement comandoAlterardd = conexao.prepareStatement(sqlAlterardoadores);
+            comandoAlterardd.setString(1, this.email);
+            comandoAlterardd.setInt(2, this.doadores_id);
+            
+            
+            
+            System.out.println("alterado com sucesso");
+            comandoAlterar.close();
+            comandoAlterardd.close();
+            
+            
+        }catch(SQLException e){
+            System.out.println(e);
+            
+        }
     }
 
 }
