@@ -20,7 +20,8 @@ public class App {
         String datanasc_ins;
         String doacoes_ins = "dinheiro";
         float doecoesquant_ins = 0;
-        String data = "12";
+        String data;
+        String[] tipo_usu = {"Doadores", "Voluntarios", "Refugiados"};
 
         opc_principal = 0;
 
@@ -164,10 +165,11 @@ public class App {
                 } else if (opc_principal == 3) {
                     try {
                         for (;;) {
+
                             System.out.println("ola digite qual tipo de usuario deseja listar");
-                            System.out.println("1 doadores");
-                            System.out.println("2 voluntarios");
-                            System.out.println("3 Refugiados");
+                            for (int i = 0; i < tipo_usu.length; i++) {
+                                System.out.println("1- " + tipo_usu[i]);
+                            }
                             System.out.println("4 sair da listagem");
                             String opc3 = scan.nextLine();
                             int opc3t = Integer.parseInt(opc3);
@@ -199,25 +201,24 @@ public class App {
                 } else if (opc_principal == 5) {
 
                     System.out.println("ola digite qual tipo de usuario deseja excluir");
-                    System.out.println("1 doadores");
-                    System.out.println("2 voluntarios");
-                    System.out.println("3 Refugiados");
+                    for (int i = 0; i < tipo_usu.length; i++) {
+                        System.out.println("1- " + tipo_usu[i]);
+                    }
+
                     System.out.println("4 sair ");
                     int opc5 = scan.nextInt();
                     scan.nextLine();
-                    
-                    if(opc5==1){
+
+                    if (opc5 == 1) {
                         System.out.println("digite o nome do usuario que deseja excluir");
                         String nome_excl = scan.nextLine();
                         System.out.println("digite o email de doador para confirmar a exclusao");
                         String email_excl = scan.nextLine();
-                        
-                        Doadores d3 = new Doadores(nome_excl,null,null,email_excl);
+
+                        Doadores d3 = new Doadores(nome_excl, null, null, email_excl);
                         d3.excluir();
-                        
+
                     }
-                    
-                    
 
                 } else if (opc_principal == 6) {
                     System.out.println("Obrigado por utilizar nosso sistema");
