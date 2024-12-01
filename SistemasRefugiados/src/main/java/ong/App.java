@@ -179,16 +179,15 @@ public class App {
                             } else if (opc3t == 2) {
 
                             } else if (opc3t == 3) {
-                                
-                            }else if(opc3t== 4){
+
+                            } else if (opc3t == 4) {
                                 System.out.println("...");
                                 break;
                             } else {
                                 System.out.println("digite um numero valido");
 
                             }
-                            
-                            
+
                         }
 
                     } catch (NumberFormatException e) {
@@ -198,6 +197,27 @@ public class App {
                 } else if (opc_principal == 4) {
 
                 } else if (opc_principal == 5) {
+
+                    System.out.println("ola digite qual tipo de usuario deseja excluir");
+                    System.out.println("1 doadores");
+                    System.out.println("2 voluntarios");
+                    System.out.println("3 Refugiados");
+                    System.out.println("4 sair ");
+                    int opc5 = scan.nextInt();
+                    scan.nextLine();
+                    
+                    if(opc5==1){
+                        System.out.println("digite o nome do usuario que deseja excluir");
+                        String nome_excl = scan.nextLine();
+                        System.out.println("digite o email de doador para confirmar a exclusao");
+                        String email_excl = scan.nextLine();
+                        
+                        Doadores d3 = new Doadores(nome_excl,null,null,email_excl);
+                        d3.excluir();
+                        
+                    }
+                    
+                    
 
                 } else if (opc_principal == 6) {
                     System.out.println("Obrigado por utilizar nosso sistema");
