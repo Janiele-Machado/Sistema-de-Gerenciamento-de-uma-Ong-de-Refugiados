@@ -168,7 +168,7 @@ public class App {
 
                             System.out.println("ola digite qual tipo de usuario deseja listar");
                             for (int i = 0; i < tipo_usu.length; i++) {
-                                System.out.println("1- " + tipo_usu[i]);
+                                System.out.println((i+1)+"-" + tipo_usu[i]);
                             }
                             System.out.println("4 sair da listagem");
                             String opc3 = scan.nextLine();
@@ -202,7 +202,7 @@ public class App {
 
                     System.out.println("ola digite qual tipo de usuario deseja excluir");
                     for (int i = 0; i < tipo_usu.length; i++) {
-                        System.out.println("1- " + tipo_usu[i]);
+                        System.out.println( (i+1)+"- " + tipo_usu[i]);
                     }
 
                     System.out.println("4 sair ");
@@ -212,11 +212,16 @@ public class App {
                     if (opc5 == 1) {
                         System.out.println("digite o nome do usuario que deseja excluir");
                         String nome_excl = scan.nextLine();
-                        System.out.println("digite o email de doador para confirmar a exclusao");
+                        System.out.println("digite o email de doador");
                         String email_excl = scan.nextLine();
+                        System.out.println("Digite o id de doador");
+                        int dd_id = scan.nextInt();
+                        scan.nextLine();
 
                         Doadores d3 = new Doadores(nome_excl, null, null, email_excl);
-                        d3.excluir();
+                        if (d3.verifivar(email_excl, dd_id)) {
+                            d3.excluir();
+                        }
 
                     }
 
