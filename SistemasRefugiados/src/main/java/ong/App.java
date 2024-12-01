@@ -203,40 +203,88 @@ public class App {
                     }
 
                 } else if (opc_principal == 4) {
-
-                } else if (opc_principal == 5) {
-                    try{
-
-                    System.out.println("ola digite qual tipo de usuario deseja excluir");
+                    System.out.println("Digite qual usuario deseja alterar ");
                     for (int i = 0; i < tipo_usu.length; i++) {
                         System.out.println((i + 1) + "- " + tipo_usu[i]);
                     }
+                    int opc4 = scan.nextInt();
+                    scan.nextLine();
 
-                    System.out.println("4 sair ");
-                    String opc5t = scan.nextLine();
-                    int opc5 = Integer.parseInt(opc5t);
-                    
+                    if (opc4 == 1) {
+                        System.out.println("deseja alterar um doador (S)im ou (N)ao ");
+                        String cont= scan.nextLine();
+                        while (cont.equals("sim") || cont.equals("s")) {
+                            System.out.println("Para Alterar por favor se indentifiquesse ");
+                        
+                        System.out.println("Digite seu email de doador");
+                        String emailalt = scan.nextLine();
+                        System.out.println("Digite seu id");
+                        int id_alt = scan.nextInt();
+                        scan.nextLine();
+                        Doadores dver = new Doadores(null, null, null, emailalt);
+                        Boolean verc = dver.verifivar(emailalt, id_alt);
+                        if (verc) {
+                            System.out.println("ok agora preencha os campos abaixo para alteraçao");
+                            System.out.println("Alteraçao de nome:");
+                            String nomealt = scan.nextLine();
+                            System.out.println("Alteraçao de nacionalidade:");
+                            String nacio = scan.nextLine();
+                            System.out.println("Alteraçao na data de nascimento");
+                            String data_n = scan.nextLine();
+                            System.out.println("ALteraçao de email:");
+                            String email_alt = scan.nextLine();
+                            Doadores d_alterar = new Doadores(nomealt, data_n, nacio, email_alt);
+                            d_alterar.setDoadores_id(id_alt);
+                            d_alterar.alterar();
 
-                    if (opc5 == 1) {
-                        System.out.println("digite o nome do usuario que deseja excluir");
-                        String nome_excl = scan.nextLine();
-                        System.out.println("digite o email de doador");
-                        String email_excl = scan.nextLine();
-                        System.out.println("Digite o id de doador");
-                        String dd_idt = scan.nextLine();
-                        int dd_id = Integer.parseInt(dd_idt);
+                            
+                            
+                        }
+                        System.out.println("deseja alterar novamente (S)im ou (N)ao ?");
+                        cont = scan.nextLine();
+                    }
+                        
 
-                        Doadores d3 = new Doadores(nome_excl, null, null, email_excl);
-                        if (d3.verifivar(email_excl, dd_id)) {
-                            d3.excluir();
+                } else if (opc4 == 2) {
+
+                } else if (opc4 == 3) {
+
+                } else {
+                    System.out.println("digite um numero valido por favor");
+                }
+
+            }else if (opc_principal == 5) {
+                    try {
+
+                        System.out.println("ola digite qual tipo de usuario deseja excluir");
+                        for (int i = 0; i < tipo_usu.length; i++) {
+                            System.out.println((i + 1) + "- " + tipo_usu[i]);
                         }
 
-                    }
-                    
-                   }catch(NumberFormatException e){
+                        System.out.println("4 sair ");
+                        String opc5t = scan.nextLine();
+                        int opc5 = Integer.parseInt(opc5t);
+
+                        if (opc5 == 1) {
+                            System.out.println("digite o nome do usuario que deseja excluir");
+                            String nome_excl = scan.nextLine();
+                            System.out.println("digite o email de doador");
+                            String email_excl = scan.nextLine();
+                            System.out.println("Digite o id de doador");
+                            String dd_idt = scan.nextLine();
+                            int dd_id = Integer.parseInt(dd_idt);
+
+                            Doadores d3 = new Doadores(nome_excl, null, null, email_excl);
+                            if (d3.verifivar(email_excl, dd_id)) {
+                                d3.excluir();
+                            }
+
+                        }
+
+                    } catch (NumberFormatException e) {
                         System.out.println("ops algo deu errado verifique se esta preenchendo corretamente e tente novamente");
-                       
-                   }
+
+                    }
 
                 } else if (opc_principal == 6) {
                     System.out.println("Obrigado por utilizar nosso sistema");
@@ -244,12 +292,13 @@ public class App {
                     System.out.println("Digite uma opcao valida,por favor");
                 }
 
-            } catch (NumberFormatException e) {
+        }catch (NumberFormatException e) {
                 System.out.println("Error, digite um numero inteiro valido, por favor");
             }
 
-        }
-        scan.close();
-
     }
+
+    scan.close ();
+
+}
 }
