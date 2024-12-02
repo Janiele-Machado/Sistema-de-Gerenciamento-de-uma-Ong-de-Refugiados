@@ -185,7 +185,32 @@ public class Refugiados extends Usuarios {
             
         }
     }
+      
+       public void excluir() {
+        Connection conexao = new Conexao().getConexao();
+        //DELETE FROM refugiados WHERE fk_usuarios_refu_id= 18
+        //DELETE FROM usuarios WHERE usu_id = 18
+        String sqlExcluir_refu = "DELETE FROM refugiados WHERE fk_usuarios_refu_id = ? ";
+        String sqlExcluir_usu = "DELETE FROM usuarios WHERE usu_id = ?";
+        try {
+            PreparedStatement comandoExcluir = conexao.prepareStatement(sqlExcluir_refu);
+            comandoExcluir.setInt(1, this.refugiados_id);
+            comandoExcluir.executeUpdate();
 
+            PreparedStatement comando_excluir_r = conexao.prepareStatement(sqlExcluir_usu);
+            comando_excluir_r.setInt(1, this.refugiados_id);
+            comando_excluir_r.executeUpdate();
+            
+            System.out.println("Refugiado apagado com sucesso");
+            comandoExcluir.close();
+            comando_excluir_r.close();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+
+        }
+
+    }
 
     
     

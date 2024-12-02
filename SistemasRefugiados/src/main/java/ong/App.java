@@ -262,7 +262,7 @@ public class App {
                                     System.out.println("Digite seu id de usuario(caso nao saiba verifique seu id na listagem)");
                                     int id_alt = scan.nextInt();
                                     scan.nextLine();
-                                    Refugiados rver = new Refugiados(null, null, null,null);
+                                    Refugiados rver = new Refugiados(null, null, null, null);
                                     Boolean verc = rver.verificar(id_alt);
                                     if (verc) {
                                         System.out.println("Agora preencha os campos abaixo para alteraçao:");
@@ -309,6 +309,7 @@ public class App {
                             opc5 = Integer.parseInt(opc5t);
 
                             if (opc5 == 1) {
+
                                 System.out.println("digite o nome do usuario que deseja excluir");
                                 String nome_excl = scan.nextLine();
                                 System.out.println("digite o email de doador");
@@ -325,6 +326,18 @@ public class App {
                             } else if (opc5 == 2) {
 
                             } else if (opc5 == 3) {
+                                System.out.println("Para excluir um cadastro de Refugiado:");
+                                System.out.println("Digite seu id de usuario(caso nao saiba verifique seu id na listagem)");
+                                int id_alt = scan.nextInt();
+                                scan.nextLine();
+                                Refugiados rver = new Refugiados(null, null, null, null);
+                                Boolean verc = rver.verificar(id_alt);
+                                if (verc) {
+
+                                    Refugiados r_excluir = new Refugiados(null, null, null, null);
+                                    r_excluir.setRefugiados_id(id_alt);
+                                    r_excluir.excluir();
+                                }
 
                             } else if (opc5 == 4) {
                                 System.out.println("...");
