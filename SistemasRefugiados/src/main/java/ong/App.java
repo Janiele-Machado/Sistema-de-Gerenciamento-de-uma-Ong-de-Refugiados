@@ -143,7 +143,7 @@ public class App {
 
                             // futuramente farei um metodo para verificar 
                             Doadores d1 = new Doadores(null, null, null, email_ins2);
-                            boolean verc = d1.verifivar(email_ins2, dd_aux_id);
+                            boolean verc = d1.verificar(email_ins2, dd_aux_id);
 
                             if (verc == true) {
                                 System.out.println("digite o tipo de doaçao");
@@ -187,6 +187,8 @@ public class App {
                             } else if (opc3t == 2) {
 
                             } else if (opc3t == 3) {
+                                Refugiados l = new Refugiados(null, null, null, null);
+                                l.listar();
 
                             } else if (opc3t == 4) {
                                 System.out.println("...");
@@ -227,7 +229,7 @@ public class App {
                                     int id_alt = scan.nextInt();
                                     scan.nextLine();
                                     Doadores dver = new Doadores(null, null, null, emailalt);
-                                    Boolean verc = dver.verifivar(emailalt, id_alt);
+                                    Boolean verc = dver.verificar(emailalt, id_alt);
                                     if (verc) {
                                         System.out.println("ok agora preencha os campos abaixo para alteraçao");
                                         System.out.println("Alteraçao de nome:");
@@ -286,7 +288,7 @@ public class App {
                                 int dd_id = Integer.parseInt(dd_idt);
 
                                 Doadores d3 = new Doadores(nome_excl, null, null, email_excl);
-                                if (d3.verifivar(email_excl, dd_id)) {
+                                if (d3.verificar(email_excl, dd_id)) {
                                     d3.excluir();
                                 }
 

@@ -75,7 +75,7 @@ public class Doadores extends Usuarios {
         }
     }
 
-    public boolean verifivar(String email_verificar, int id_verificar) {
+    public boolean verificar(String email_verificar, int id_verificar) {
 
         Connection conexao = new Conexao().getConexao();
         String sqlVerificar = "SELECT fk_usuarios_doadores_id  FROM doadores WHERE doadores_email= ?";
@@ -131,7 +131,9 @@ public class Doadores extends Usuarios {
                 System.out.println("nacionalidade: " + rs2.getString("nacionalidade"));
                 System.out.println("data de nascimento:" + rs2.getString("Data_nasc"));
                 System.out.println("email: " + rs2.getString("doadores_email"));
+                System.out.println("--------------------------------------------");
             }
+            comandoListar.close();
 
         } catch (SQLException e) {
             System.out.println(e);
