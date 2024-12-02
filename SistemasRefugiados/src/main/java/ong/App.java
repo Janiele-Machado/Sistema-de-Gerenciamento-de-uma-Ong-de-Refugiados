@@ -157,6 +157,8 @@ public class App {
                             } else {
                                 System.out.println("ops algo deu errado");
                             }
+                            System.out.println("Deseja fazer outra doaçao (S)im ou (N)ao");
+                            s_n2 = scan.nextLine();
 
                         } catch (NumberFormatException e) {
                             System.out.println("erro id so pode ter numeros tente novamente");
@@ -252,6 +254,34 @@ public class App {
                             } else if (opc4 == 2) {
 
                             } else if (opc4 == 3) {
+                                System.out.println("Deseja alterar um refugiado (S)im ou (N)ao ");
+                                String cont = scan.nextLine();
+                                while (cont.equals("sim") || cont.equals("s")) {
+                                    System.out.println("Para Alterar por favor se indentifique: ");
+
+                                    System.out.println("Digite seu id de usuario(caso nao saiba verifique seu id na listagem)");
+                                    int id_alt = scan.nextInt();
+                                    scan.nextLine();
+                                    Refugiados rver = new Refugiados(null, null, null,null);
+                                    Boolean verc = rver.verificar(id_alt);
+                                    if (verc) {
+                                        System.out.println("Agora preencha os campos abaixo para alteraçao:");
+                                        System.out.println("Alteraçao de nome:");
+                                        String nomealt = scan.nextLine();
+                                        System.out.println("Alteraçao de nacionalidade:");
+                                        String nacio = scan.nextLine();
+                                        System.out.println("Alteraçao na data de nascimento");
+                                        String data_n = scan.nextLine();
+                                        System.out.println("ALteraçao de estado(legal ou ilegal):");
+                                        String estado_alt = scan.nextLine();
+                                        Refugiados r_alterar = new Refugiados(nomealt, data_n, nacio, estado_alt);
+                                        r_alterar.setRefugiados_id(id_alt);
+                                        r_alterar.alterar();
+
+                                    }
+                                    System.out.println("Deseja alterar novamente (S)im ou (N)ao ?");
+                                    cont = scan.nextLine();
+                                }
 
                             } else if (opc4 == 4) {
                                 System.out.println("...");

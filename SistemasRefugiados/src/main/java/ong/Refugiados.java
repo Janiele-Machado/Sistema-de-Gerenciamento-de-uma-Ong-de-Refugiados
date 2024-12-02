@@ -8,11 +8,22 @@ import java.sql.SQLException;
 public class Refugiados extends Usuarios {
 
     private String estado;
+     private int refugiados_id;
+
 
     public Refugiados(String nome, String data_nasc, String nacionalidade, String estado) {
         super(nome, data_nasc, nacionalidade);
         this.estado = estado;
     }
+
+    public int getRefugiados_id() {
+        return refugiados_id;
+    }
+
+    public void setRefugiados_id(int refugiados_id) {
+        this.refugiados_id = refugiados_id;
+    }
+    
 
     @Override
     public void inserir() {
@@ -98,6 +109,83 @@ public class Refugiados extends Usuarios {
 
         }
     }
+     
+    public boolean verificar(int id_verificar) {
+
+        Connection conexao = new Conexao().getConexao();
+        //SELECT fk_usuarios_refu_id FROM refugiados WHERE fk_usuarios_refu_id = 3;
+        String sqlVerificar = "SELECT fk_usuarios_refu_id FROM refugiados WHERE fk_usuarios_refu_id = ? ";
+        try {
+            PreparedStatement comandoVerificar = conexao.prepareStatement(sqlVerificar);
+            comandoVerificar.setInt(1, id_verificar);
+            ResultSet rs = comandoVerificar.executeQuery();
+
+            if (rs.next()) {
+                int ver = rs.getInt("fk_usuarios_refu_id");
+                if (ver == id_verificar) {
+                    System.out.println("Id encontrado: ");
+                    return true;
+
+                } else {
+                    System.out.println("opa id nao confere");
+                    return false;
+                }
+
+            }else{
+                System.out.println("opa id nao confere");
+                return false;
+            } 
+
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+
+        } finally {
+
+            try {
+                if (conexao != null && !conexao.isClosed()) {
+                    conexao.close();
+                }
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+
+        }
+
+    }
+     
+      public void alterar(){
+        Connection conexao = new Conexao().getConexao();
+        //UPDATE  usuarios  SET nome = "Jane Rodriguez ", Data_nasc= "23/12/1981", nacionalidade ="Coreana" WHERE  usu_id= 4;
+       //UPDATE  refugiados SET refu_estado = "Legal" WHERE fk_usuarios_refu_id= 4;
+          String sqlAlterar = "UPDATE  usuarios  SET nome =?, Data_nasc=?, nacionalidade=? WHERE  usu_id=?";
+          String sqlAlterarRefu = "UPDATE  refugiados SET refu_estado = ? WHERE fk_usuarios_refu_id= ?";
+          try{
+            PreparedStatement comandoAlterar = conexao.prepareStatement(sqlAlterar);
+            comandoAlterar.setString(1, this.nome);
+            comandoAlterar.setString(2, this.data_nasc);
+            comandoAlterar.setString(3, this.nacionalidade);
+            comandoAlterar.setInt(4, this.refugiados_id);
+            comandoAlterar.executeUpdate();
+            
+            
+            PreparedStatement comandoAlterardd = conexao.prepareStatement(sqlAlterarRefu);
+            comandoAlterardd.setString(1, this.estado);
+            comandoAlterardd.setInt(2, this.refugiados_id);
+            
+            
+            
+            System.out.println("alterado com sucesso");
+            comandoAlterar.close();
+            comandoAlterardd.close();
+            
+            
+        }catch(SQLException e){
+            System.out.println(e);
+            
+        }
+    }
+
 
     
     
