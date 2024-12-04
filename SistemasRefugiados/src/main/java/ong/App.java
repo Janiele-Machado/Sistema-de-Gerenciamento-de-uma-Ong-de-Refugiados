@@ -191,6 +191,18 @@ public class App {
                             case 2:
                                 break;
                             case 3:
+                                System.out.println("Para Consultar um cadastro de Refugiado:");
+                                System.out.println("Digite seu id de usuario(caso nao saiba verifique seu id na listagem)");
+                                int id_alt = scan.nextInt();
+                                scan.nextLine();
+                                Refugiados rver = new Refugiados(null, null, null, null);
+                                Boolean verc = rver.verificar(id_alt);
+                                if (verc) {
+
+                                    Refugiados r_consu = new Refugiados(null, null, null, null);
+                                    //r_consu.setRefugiados_id(id_alt);
+                                    r_consu.listar(id_alt);
+                                }
                                 break;
                             default:
                                 System.out.println("erro");
