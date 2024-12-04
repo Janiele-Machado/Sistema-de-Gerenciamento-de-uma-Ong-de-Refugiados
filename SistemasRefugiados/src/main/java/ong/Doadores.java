@@ -149,6 +149,7 @@ public class Doadores extends Usuarios {
 
         }
     }
+    //SOBRECARGA
     public void listar(String l_email){
         Connection conexao = new Conexao().getConexao();
         String sqlListart= "select *from usuarios join  doadores on usu_id= fk_usuarios_doadores_id where doadores_email=?";
@@ -157,9 +158,6 @@ public class Doadores extends Usuarios {
             comandoListart.setString(1, this.email);
             ResultSet rs2 = comandoListart.executeQuery();
             
-            
-            
-
             while (rs2.next()) {
                 System.out.println("id: " + rs2.getInt("usu_id"));
                 System.out.println("nome: " + rs2.getString("nome"));
