@@ -31,10 +31,11 @@ public class App {
                 System.out.println("-------Menu de Opcoes--------");
                 System.out.println("|1-Cadastro de usuarios     |");
                 System.out.println("|2-Registrar doacoes        |");
-                System.out.println("|3-Listagem de usuarios     |");
-                System.out.println("|4-Editar Cadastros         |");
-                System.out.println("|5-Excluir Cadastros        |");
-                System.out.println("|6-Sair                     |");
+                System.out.println("|3-Consultar Usuarios       |");
+                System.out.println("|4-Listagem de Usuarios     |");
+                System.out.println("|5-Editar Cadastros         |");
+                System.out.println("|6-Excluir Cadastros        |");
+                System.out.println("|7-Sair                     |");
                 System.out.println("-----------------------------");
                 String opct = scan.nextLine();
                 opc_principal = Integer.parseInt(opct);
@@ -171,6 +172,29 @@ public class App {
                     }
 
                 } else if (opc_principal == 3) {
+                    System.out.println("Digite qual usuario deseja consultar ");
+                    for (int i = 0; i < tipo_usu.length; i++) {
+                        System.out.println((i + 1) + "- " + tipo_usu[i]);
+                    }
+                    int opc_c = scan.nextInt();
+                    scan.nextLine();
+                    if(opc_c==1){
+                        System.out.println("digite o email do doador para realizar a consulta");
+                        String email_c = scan.nextLine();
+                        Doadores d_c = new  Doadores(null,null,null,email_c);
+                        d_c.listar(email_c);
+                        
+                    }else if(opc_c==2){
+                        
+                    }else if(opc_c==3){
+                        
+                    }else{
+                        System.out.println("erro");
+                    }
+                        
+                        
+
+                } else if (opc_principal == 4) {
                     try {
                         for (;;) {
 
@@ -206,7 +230,7 @@ public class App {
                         System.out.println("por favor digite um numero valido");
                     }
 
-                } else if (opc_principal == 4) {
+                } else if (opc_principal == 5) {
                     int opc4 = 0;
                     while (opc4 != 4) {
 
@@ -294,7 +318,7 @@ public class App {
                         }
                     }
 
-                } else if (opc_principal == 5) {
+                } else if (opc_principal == 6) {
                     int opc5 = 0;
                     while (opc5 != 4) {
                         try {
@@ -352,7 +376,7 @@ public class App {
                         }
                     }
 
-                } else if (opc_principal == 6) {
+                } else if (opc_principal == 7) {
                     System.out.println("Obrigado por utilizar nosso sistema");
                 } else {
                     System.out.println("Digite uma opcao valida,por favor");
