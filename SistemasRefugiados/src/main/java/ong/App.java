@@ -25,7 +25,7 @@ public class App {
 
         opc_principal = 0;
 
-        while (opc_principal != 6) {
+        while (opc_principal != 7) {
             try {
 
                 System.out.println("-------Menu de Opcoes--------");
@@ -40,7 +40,7 @@ public class App {
                 String opct = scan.nextLine();
                 opc_principal = Integer.parseInt(opct);
 
-                if (opc_principal == 1) {
+                if (opc_principal == 1) { //CADASTROS
                     opc1 = 0;
                     while (opc1 != 4) {
                         try {
@@ -130,7 +130,7 @@ public class App {
                         }
                     }
 
-                } else if (opc_principal == 2) {
+                } else if (opc_principal == 2) {//DOAÇÕES
                     System.out.println("Deseja fazer uma doaçao (S)im ou (N)ao");
                     String s_n2 = scan.nextLine();
                     while (s_n2.equals("sim") || s_n2.equals("s")) {
@@ -171,30 +171,32 @@ public class App {
 
                     }
 
-                } else if (opc_principal == 3) {
+                } else if (opc_principal == 3) { //CONSULTAS
                     System.out.println("Digite qual usuario deseja consultar ");
                     for (int i = 0; i < tipo_usu.length; i++) {
                         System.out.println((i + 1) + "- " + tipo_usu[i]);
                     }
                     int opc_c = scan.nextInt();
                     scan.nextLine();
-                    if(opc_c==1){
-                        System.out.println("digite o email do doador para realizar a consulta");
-                        String email_c = scan.nextLine();
-                        Doadores d_c = new  Doadores(null,null,null,email_c);
-                        d_c.listar(email_c);
-                        
-                    }else if(opc_c==2){
-                        
-                    }else if(opc_c==3){
-                        
-                    }else{
-                        System.out.println("erro");
+                    switch (opc_c) {
+                        case 1:
+                            System.out.println("digite o email do doador para realizar a consulta");
+                            String email_c = scan.nextLine();
+                            Doadores d_c = new  Doadores(null,null,null,email_c);
+                            d_c.listar(email_c);
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            break;
+                        default:
+                            System.out.println("erro");
+                            break;
                     }
                         
                         
 
-                } else if (opc_principal == 4) {
+                } else if (opc_principal == 4) { //LISTAGENS
                     try {
                         for (;;) {
 
@@ -230,7 +232,7 @@ public class App {
                         System.out.println("por favor digite um numero valido");
                     }
 
-                } else if (opc_principal == 5) {
+                } else if (opc_principal == 5) { //ALTERAÇÕES
                     int opc4 = 0;
                     while (opc4 != 4) {
 
@@ -318,7 +320,7 @@ public class App {
                         }
                     }
 
-                } else if (opc_principal == 6) {
+                } else if (opc_principal == 6) { //EXCLUSÃO
                     int opc5 = 0;
                     while (opc5 != 4) {
                         try {
