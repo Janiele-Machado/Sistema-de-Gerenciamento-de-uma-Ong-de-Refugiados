@@ -172,29 +172,34 @@ public class App {
                     }
 
                 } else if (opc_principal == 3) { //CONSULTAS
-                    System.out.println("Digite qual usuario deseja consultar ");
-                    for (int i = 0; i < tipo_usu.length; i++) {
-                        System.out.println((i + 1) + "- " + tipo_usu[i]);
+                    try {
+
+                        System.out.println("Digite qual usuario deseja consultar ");
+                        for (int i = 0; i < tipo_usu.length; i++) {
+                            System.out.println((i + 1) + "- " + tipo_usu[i]);
+                        }
+                        String opc3 = scan.nextLine();
+                        int opc_c = Integer.parseInt(opc3);
+
+                        switch (opc_c) {
+                            case 1:
+                                System.out.println("digite o email do doador para realizar a consulta");
+                                String email_c = scan.nextLine();
+                                Doadores d_c = new Doadores(null, null, null, email_c);
+                                d_c.listar(email_c);
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                break;
+                            default:
+                                System.out.println("erro");
+                                break;
+                        }
+
+                    } catch (NumberFormatException e) {
+                        System.out.println("por favor digite um numero valido");
                     }
-                    int opc_c = scan.nextInt();
-                    scan.nextLine();
-                    switch (opc_c) {
-                        case 1:
-                            System.out.println("digite o email do doador para realizar a consulta");
-                            String email_c = scan.nextLine();
-                            Doadores d_c = new  Doadores(null,null,null,email_c);
-                            d_c.listar(email_c);
-                            break;
-                        case 2:
-                            break;
-                        case 3:
-                            break;
-                        default:
-                            System.out.println("erro");
-                            break;
-                    }
-                        
-                        
 
                 } else if (opc_principal == 4) { //LISTAGENS
                     try {
