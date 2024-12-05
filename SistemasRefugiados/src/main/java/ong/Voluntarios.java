@@ -69,4 +69,38 @@ public class Voluntarios extends Usuarios {
         }
     }
 
+    public void listar() {
+
+        Connection conexao = new Conexao().getConexao();
+        String sqlListar = "SELECT *FROM usuarios join  voluntarios on usu_id = fk_usuarios_volu_id;";
+        try {
+            PreparedStatement comandoListar = conexao.prepareStatement(sqlListar);
+            ResultSet rs2 = comandoListar.executeQuery();
+
+            while (rs2.next()) {
+                System.out.println("id: " + rs2.getInt("usu_id"));
+                System.out.println("nome: " + rs2.getString("nome"));
+                System.out.println("nacionalidade: " + rs2.getString("nacionalidade"));
+                System.out.println("data de nascimento:" + rs2.getString("Data_nasc"));
+                System.out.println("email: " + rs2.getString("volu_email"));
+                System.out.println("Habilidade:" + rs2.getString("volu_habilidades"));
+                System.out.println("-----------------------------------------------");
+            }
+
+            comandoListar.close();
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+
+            try {
+                if (conexao != null && !conexao.isClosed()) {
+                    conexao.close();
+                }
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+
+        }
+    }
 }
