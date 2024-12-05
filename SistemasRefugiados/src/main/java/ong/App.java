@@ -229,8 +229,11 @@ public class App {
                                 Doadores d2 = new Doadores(null, null, null, null);
                                 d2.listar();
 
-                            } else if (opc3t == 2) {
-
+                            }else if (opc3t == 2) {
+                                Voluntarios v = new Voluntarios(null, null, null, null, null);
+                                v.listar();
+                                
+                            
                             } else if (opc3t == 3) {
                                 Refugiados l = new Refugiados(null, null, null, null);
                                 l.listar();
