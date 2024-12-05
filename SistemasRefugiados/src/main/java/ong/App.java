@@ -189,6 +189,10 @@ public class App {
                                 d_c.listar(email_c);
                                 break;
                             case 2:
+                                System.out.println("digite o email do Voluntario para realizar a consulta");
+                                String email_v = scan.nextLine();
+                                Voluntarios v_l = new Voluntarios(null, null, null, null, null);
+                                v_l.listar(email_v);
                                 break;
                             case 3:
                                 System.out.println("Para Consultar um cadastro de Refugiado:");
