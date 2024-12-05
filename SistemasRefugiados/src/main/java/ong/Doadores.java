@@ -21,9 +21,10 @@ public class Doadores extends Usuarios {
     public int getDoadores_id() {
         return doadores_id;
     }
-    public void  setDoadores_id(int dd){
+
+    public void setDoadores_id(int dd) {
         this.doadores_id = dd;
-        
+
     }
 
     @Override
@@ -149,15 +150,17 @@ public class Doadores extends Usuarios {
 
         }
     }
+
     //SOBRECARGA
-    public void listar(String l_email){
+    public void listar(String l_email) {
+        this.email = l_email;
         Connection conexao = new Conexao().getConexao();
-        String sqlListart= "select *from usuarios join  doadores on usu_id= fk_usuarios_doadores_id where doadores_email=?";
+        String sqlListart = "select *from usuarios join  doadores on usu_id= fk_usuarios_doadores_id where doadores_email=?";
         try {
             PreparedStatement comandoListart = conexao.prepareStatement(sqlListart);
             comandoListart.setString(1, this.email);
             ResultSet rs2 = comandoListart.executeQuery();
-            
+
             while (rs2.next()) {
                 System.out.println("id: " + rs2.getInt("usu_id"));
                 System.out.println("nome: " + rs2.getString("nome"));
@@ -181,7 +184,7 @@ public class Doadores extends Usuarios {
             }
 
         }
-        
+
     }
 
     public void excluir() {
@@ -196,7 +199,7 @@ public class Doadores extends Usuarios {
             PreparedStatement comando_excluir_d = conexao.prepareStatement(sqlExcluir_usu);
             comando_excluir_d.setString(1, this.nome);
             comando_excluir_d.executeUpdate();
-            
+
             System.out.println("Doador apagado com sucesso");
             comandoExcluir.close();
             comando_excluir_d.close();
@@ -207,33 +210,30 @@ public class Doadores extends Usuarios {
         }
 
     }
-    public void alterar(){
+
+    public void alterar() {
         Connection conexao = new Conexao().getConexao();
         String sqlAlterar = "UPDATE  usuarios  SET nome =?, Data_nasc=?, nacionalidade=? WHERE  usu_id=?";
         String sqlAlterardoadores = "UPDATE  doadores SET doadores_email=? WHERE fk_usuarios_doadores_id=?";
-        try{
+        try {
             PreparedStatement comandoAlterar = conexao.prepareStatement(sqlAlterar);
             comandoAlterar.setString(1, this.nome);
             comandoAlterar.setString(2, this.data_nasc);
             comandoAlterar.setString(3, this.nacionalidade);
             comandoAlterar.setInt(4, this.doadores_id);
             comandoAlterar.executeUpdate();
-            
-            
+
             PreparedStatement comandoAlterardd = conexao.prepareStatement(sqlAlterardoadores);
             comandoAlterardd.setString(1, this.email);
             comandoAlterardd.setInt(2, this.doadores_id);
-            
-            
-            
+
             System.out.println("alterado com sucesso");
             comandoAlterar.close();
             comandoAlterardd.close();
-            
-            
-        }catch(SQLException e){
+
+        } catch (SQLException e) {
             System.out.println(e);
-            
+
         }
     }
 

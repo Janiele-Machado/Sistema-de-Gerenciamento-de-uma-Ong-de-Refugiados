@@ -178,6 +178,7 @@ public class App {
                         for (int i = 0; i < tipo_usu.length; i++) {
                             System.out.println((i + 1) + "- " + tipo_usu[i]);
                         }
+                        System.out.println("4-voltar");
                         String opc3 = scan.nextLine();
                         int opc_c = Integer.parseInt(opc3);
 
@@ -185,7 +186,7 @@ public class App {
                             case 1:
                                 System.out.println("digite o email do doador para realizar a consulta");
                                 String email_c = scan.nextLine();
-                                Doadores d_c = new Doadores(null, null, null, email_c);
+                                Doadores d_c = new Doadores(null, null, null, null);
                                 d_c.listar(email_c);
                                 break;
                             case 2:
@@ -207,6 +208,9 @@ public class App {
                                     //r_consu.setRefugiados_id(id_alt);
                                     r_consu.listar(id_alt);
                                 }
+                                break;
+                            case 4:
+                                System.out.println("...");
                                 break;
                             default:
                                 System.out.println("erro");
@@ -233,11 +237,10 @@ public class App {
                                 Doadores d2 = new Doadores(null, null, null, null);
                                 d2.listar();
 
-                            }else if (opc3t == 2) {
+                            } else if (opc3t == 2) {
                                 Voluntarios v = new Voluntarios(null, null, null, null, null);
                                 v.listar();
-                                
-                            
+
                             } else if (opc3t == 3) {
                                 Refugiados l = new Refugiados(null, null, null, null);
                                 l.listar();
