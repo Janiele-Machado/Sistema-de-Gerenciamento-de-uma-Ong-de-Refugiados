@@ -304,8 +304,41 @@ public class App {
                                     cont = scan.nextLine();
                                 }
 
-                            } else if (opc4 == 2) {
-
+                          } else if (opc4 == 2) {
+                                System.out.println("deseja alterar um voluntario (S)im ou (N)ao ");
+                                String cont = scan.nextLine();
+                                while (cont.equals("sim") || cont.equals("s")) {
+                                    System.out.println("Para Alterar por favor se indentifiquesse ");
+                                    
+                                    System.out.println("Digite seu email de voluntario");
+                                    String emailalt = scan.nextLine();
+                                    System.out.println("Digite seu id");
+                                    int id_alt = scan.nextInt();
+                                    scan.nextLine();
+                                    Voluntarios vver = new Voluntarios(null, null, null, emailalt, null);
+                                    Boolean verc = vver.verificar(emailalt, id_alt);
+                                    if (verc) {
+                                        System.out.println("ok agora preencha os campos abaixo para alteraçao");
+                                        System.out.println("Alteraçao de nome:");
+                                        String nomealt = scan.nextLine();
+                                        System.out.println("Alteraçao de nacionalidade:");
+                                        String nacio = scan.nextLine();
+                                        System.out.println("Alteraçao na data de nascimento");
+                                        String data_n = scan.nextLine();
+                                        System.out.println("ALteraçao de email:");
+                                        String email_alt = scan.nextLine();
+                                        System.out.println("ALteraçao de Habilidades:");
+                                        String hb_alt = scan.nextLine();
+                                        Voluntarios v_alterar = new Voluntarios(nomealt, data_n, nacio, email_alt, hb_alt);
+                                        v_alterar.setVolu_id(id_alt);
+                                        v_alterar.alterar();
+                                        
+                                    }
+                                    System.out.println("deseja alterar novamente (S)im ou (N)ao ?");
+                                    cont = scan.nextLine();
+                                }
+                                
+                            }
                             } else if (opc4 == 3) {
                                 System.out.println("Deseja alterar um refugiado (S)im ou (N)ao ");
                                 String cont = scan.nextLine();
