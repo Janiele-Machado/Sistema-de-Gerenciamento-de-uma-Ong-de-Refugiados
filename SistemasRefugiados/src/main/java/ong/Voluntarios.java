@@ -9,6 +9,7 @@ public class Voluntarios extends Usuarios {
 
     private String email;
     private String habilidades;
+    private int volu_id;
 
     public Voluntarios(String nome, String data_nasc, String nacionalidade, String email, String habilidades) {
         super(nome, data_nasc, nacionalidade);
@@ -17,13 +18,23 @@ public class Voluntarios extends Usuarios {
 
     }
 
+    public int getVolu_id() {
+        return volu_id;
+    }
+
+    public void setVolu_id(int volu_id) {
+        this.volu_id = volu_id;
+    }
+    
+    
+
     @Override
     public void inserir() {
         // conecta com o banco  
         Connection conexao = new Conexao().getConexao();
         // Inserir usuário na tabela 'usuarios' (tabela genérica para usuários)
         String sqlUsuario = "INSERT INTO usuarios(nome, nacionalidade, Data_nasc) VALUES(?, ?, ?)";
-        //INSERT INTO `banco_refugiados`.`voluntarios` (`volu_habilidades`,`volu_email`, `fk_usuarios_volu_id`)VALUES ('conhecimento de informática', 'dol@gmail.com', '14');
+        //INSERT INTO banco_refugiados.voluntarios (volu_habilidades,volu_email, fk_usuarios_volu_id)VALUES ('conhecimento de informática', 'dol@gmail.com', '14');
         String sqlVoluntario = "INSERT INTO voluntarios (fk_usuarios_volu_id, volu_email, volu_habilidades) VALUES(?, ?, ?)";
         
         try {
@@ -139,4 +150,79 @@ public class Voluntarios extends Usuarios {
         }
 
     }
+     public boolean verificar(String email_verificar, int id_verificar) {
+
+        Connection conexao = new Conexao().getConexao();
+        //SELECT fk_usuarios_volu_id  FROM voluntarios WHERE volu_email= "dol@gmail.com"
+        String sqlVerificar = "SELECT fk_usuarios_volu_id  FROM voluntarios WHERE volu_email=? ";
+        try {
+            PreparedStatement comandoVerificar = conexao.prepareStatement(sqlVerificar);
+            comandoVerificar.setString(1, email_verificar);
+            ResultSet rs = comandoVerificar.executeQuery();
+
+            if (rs.next()) {
+                int ver = rs.getInt("fk_usuarios_volu_id");
+                if (ver == id_verificar) {
+                    System.out.println("ola ");
+                    return true;
+
+                } else {
+                    System.out.println("ops email ou id nao conferem");
+                    return false;
+                }
+
+            } else {
+                System.out.println("email nao encontrado");
+                return false;
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+
+        } finally {
+
+            try {
+                if (conexao != null && !conexao.isClosed()) {
+                    conexao.close();
+                }
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+
+        }
+
+    }
+    
+    
+    public void alterar() {
+        Connection conexao = new Conexao().getConexao();
+        String sqlAlterar = "UPDATE  usuarios  SET nome =?, Data_nasc=?, nacionalidade=? WHERE  usu_id=?";
+        //UPDATE  voluntarios SET volu_email=?,volu_habilidades =? WHERE fk_usuarios_volu_id=?
+        String sqlAlterarvolu = "UPDATE voluntarios SET volu_email=?,volu_habilidades =? WHERE fk_usuarios_volu_id=?";
+        try {
+            
+            PreparedStatement comandoAlterar = conexao.prepareStatement(sqlAlterar);
+            comandoAlterar.setString(1, this.nome);
+            comandoAlterar.setString(2, this.data_nasc);
+            comandoAlterar.setString(3, this.nacionalidade);
+            comandoAlterar.setInt(4, this.volu_id);
+            comandoAlterar.executeUpdate();
+
+            PreparedStatement comandoAlterardd = conexao.prepareStatement(sqlAlterarvolu);
+            comandoAlterardd.setString(1, this.email);
+            comandoAlterardd.setString(2, this.habilidades);
+            comandoAlterardd.setInt(3, this.volu_id);
+
+            System.out.println("alterado com sucesso");
+            comandoAlterar.close();
+            comandoAlterardd.close();
+
+        } catch (SQLException e) {
+            System.out.println(e);
+
+        }
+    }
+
+    
 }
