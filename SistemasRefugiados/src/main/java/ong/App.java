@@ -338,7 +338,6 @@ public class App {
                                     cont = scan.nextLine();
                                 }
                                 
-                            }
                             } else if (opc4 == 3) {
                                 System.out.println("Deseja alterar um refugiado (S)im ou (N)ao ");
                                 String cont = scan.nextLine();
