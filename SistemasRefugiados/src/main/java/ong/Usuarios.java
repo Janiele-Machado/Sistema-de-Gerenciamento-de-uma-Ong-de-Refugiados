@@ -49,6 +49,7 @@ public class Usuarios {
                 System.out.println("nacionalidade: " + rs_usu.getString("nacionalidade"));
                 System.out.println("data de nascimento: " + rs_usu.getString("Data_nasc"));
                 System.out.println("id: " + rs_usu.getInt("usu_id"));
+                System.out.println("--------------------------------------------------------------");
 
             }
             comando_listar_usu.close();

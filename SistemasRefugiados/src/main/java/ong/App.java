@@ -229,7 +229,8 @@ public class App {
                             for (int i = 0; i < tipo_usu.length; i++) {
                                 System.out.println((i + 1) + "-" + tipo_usu[i]);
                             }
-                            System.out.println("4 sair da listagem");
+                            System.out.println("4 listar tudo");
+                            System.out.println("5 sair da listagem");
                             String opc3 = scan.nextLine();
                             int opc3t = Integer.parseInt(opc3);
 
@@ -246,8 +247,13 @@ public class App {
                                 l.listar();
 
                             } else if (opc3t == 4) {
+                                Usuarios uso = new Usuarios(null, null, null);
+                                uso.listar();
+
+                            }else if(opc3t == 5) {
                                 System.out.println("...");
                                 break;
+
                             } else {
                                 System.out.println("digite um numero valido");
 
@@ -304,12 +310,12 @@ public class App {
                                     cont = scan.nextLine();
                                 }
 
-                          } else if (opc4 == 2) {
+                            } else if (opc4 == 2) {
                                 System.out.println("deseja alterar um voluntario (S)im ou (N)ao ");
                                 String cont = scan.nextLine();
                                 while (cont.equals("sim") || cont.equals("s")) {
                                     System.out.println("Para Alterar por favor se indentifiquesse ");
-                                    
+
                                     System.out.println("Digite seu email de voluntario");
                                     String emailalt = scan.nextLine();
                                     System.out.println("Digite seu id");
@@ -332,12 +338,12 @@ public class App {
                                         Voluntarios v_alterar = new Voluntarios(nomealt, data_n, nacio, email_alt, hb_alt);
                                         v_alterar.setVolu_id(id_alt);
                                         v_alterar.alterar();
-                                        
+
                                     }
                                     System.out.println("deseja alterar novamente (S)im ou (N)ao ?");
                                     cont = scan.nextLine();
                                 }
-                                
+
                             } else if (opc4 == 3) {
                                 System.out.println("Deseja alterar um refugiado (S)im ou (N)ao ");
                                 String cont = scan.nextLine();
