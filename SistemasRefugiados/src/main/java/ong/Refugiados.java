@@ -1,5 +1,8 @@
 package ong;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -244,5 +247,55 @@ public class Refugiados extends Usuarios {
         }
 
     }
+
+    public void relatorio() {
+        Connection conexao = new Conexao().getConexao();
+        String sql_relatorio = "SELECT * FROM usuarios inner join voluntarios on usu_id = fk_usuarios_refu_id;";
+        // Caminho do arquivo onde o relatório será salvo
+        String arquivo = "relatorio.txt";
+        try (BufferedWriter escritor = new BufferedWriter(new FileWriter(arquivo, true))) {
+            try {
+                PreparedStatement comandoRelatorio = conexao.prepareStatement(sql_relatorio);
+                ResultSet rsd = comandoRelatorio.executeQuery();
+                escritor.write("Relatorio Refugiados");
+                escritor.write("----------------------------------------------");
+                while (rsd.next()) {
+                    int id_txt = rsd.getInt("usu_id");
+                    String nome = rsd.getString("nome");
+                    String nacionalidade1 = rsd.getString("nacionalidade");
+                    String data = rsd.getString("Data_nasc");
+                    String emaild = rsd.getString("doadores_email");
+                    String estado = rsd.getString("refu_estado"); // com a bola
+                    // Escreve no arquivo
+                    escritor.write("| nome: " + nome + "                             |");
+                    escritor.write("| email: " + emaild + "                          |");
+                    escritor.write("| data de nascimento: " + data + "               |");
+                    escritor.write("| nacionalidade: " + nacionalidade1 + "          |");
+                    escritor.write("| estado: " + estado + "                         |");
+                    escritor.write("| id: " + id_txt + "                             |");
+                    escritor.write("--------------------------------------------------");
+
+                }
+
+            } catch (SQLException e) {
+                System.out.println(e);
+
+            }
+
+        } catch (IOException e) {
+            System.out.println(e);
+        } finally {
+            try {
+                // Fecha a conexão com o banco de dados
+                if (conexao != null && !conexao.isClosed()) {
+                    conexao.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Erro ao fechar a conexão: " + e.getMessage());
+            }
+        }
+    }
+
+
 
 }

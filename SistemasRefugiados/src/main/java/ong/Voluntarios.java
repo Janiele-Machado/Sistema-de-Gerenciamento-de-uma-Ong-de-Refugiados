@@ -242,7 +242,7 @@ public class Voluntarios extends Usuarios {
                     String nome = rsd.getString("nome");
                     String nacionalidade1 = rsd.getString("nacionalidade");
                     String data = rsd.getString("Data_nasc");
-                    String emaild = rsd.getString("doadores_email");
+                    String emaild = rsd.getString("volu_email");
                     String habilidade = rsd.getString("volu_habilidades"); // com a bola
                     // Escreve no arquivo
                     escritor.write("| nome: " + nome + "                             |");
