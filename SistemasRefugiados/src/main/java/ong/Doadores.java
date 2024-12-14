@@ -118,7 +118,7 @@ public class Doadores extends Usuarios {
         }
 
     }
-
+    @Override
     public void listar() {
         Connection conexao = new Conexao().getConexao();
         String sqlListar = "select *from usuarios join  doadores on usu_id= fk_usuarios_doadores_id;";
