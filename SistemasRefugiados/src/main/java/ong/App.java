@@ -25,7 +25,7 @@ public class App {
 
         opc_principal = 0;
 
-        while (opc_principal != 7) {
+        while (opc_principal != 8) {
             try {
 
                 System.out.println("-------Menu de Opcoes--------");
@@ -35,7 +35,8 @@ public class App {
                 System.out.println("|4-Listagem de Usuarios     |");
                 System.out.println("|5-Editar Cadastros         |");
                 System.out.println("|6-Excluir Cadastros        |");
-                System.out.println("|7-Sair                     |");
+                System.out.println("|7-Relatorio                |");
+                System.out.println("|8-Sair                     |");
                 System.out.println("-----------------------------");
                 String opct = scan.nextLine();
                 opc_principal = Integer.parseInt(opct);
@@ -250,7 +251,7 @@ public class App {
                                 Usuarios uso = new Usuarios(null, null, null);
                                 uso.listar();
 
-                            }else if(opc3t == 5) {
+                            } else if (opc3t == 5) {
                                 System.out.println("...");
                                 break;
 
@@ -442,9 +443,20 @@ public class App {
 
                         }
                     }
+                } else if (opc_principal==7){
+                    System.out.println("Crinado Relatorio");
+                    System.out.println("....");
+                    Doadores d7 = new Doadores("s", "0", "b","a");
+                    d7.relatorio();
+                    Voluntarios v7 = new Voluntarios("0","1","b","c","d");
+                    v7.relatorio();
+                    Refugiados r7 = new Refugiados("0","0","0","0");
+                    r7.relatorio();
+                    System.out.println("relatorio feito");
 
-                } else if (opc_principal == 7) {
+                } else if (opc_principal == 8) {
                     System.out.println("Obrigado por utilizar nosso sistema");
+                    
                 } else {
                     System.out.println("Digite uma opcao valida,por favor");
                 }
