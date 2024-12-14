@@ -250,7 +250,7 @@ public class Refugiados extends Usuarios {
 
     public void relatorio() {
         Connection conexao = new Conexao().getConexao();
-        String sql_relatorio = "SELECT * FROM usuarios inner join voluntarios on usu_id = fk_usuarios_refu_id;";
+        String sql_relatorio = "select *from usuarios join  refugiados on usu_id=fk_usuarios_refu_id";
         // Caminho do arquivo onde o relatório será salvo
         String arquivo = "relatorio.txt";
         try (BufferedWriter escritor = new BufferedWriter(new FileWriter(arquivo, true))) {
@@ -258,24 +258,29 @@ public class Refugiados extends Usuarios {
                 PreparedStatement comandoRelatorio = conexao.prepareStatement(sql_relatorio);
                 ResultSet rsd = comandoRelatorio.executeQuery();
                 escritor.write("Relatorio Refugiados");
-                escritor.write("----------------------------------------------");
+                escritor.newLine();
                 while (rsd.next()) {
                     int id_txt = rsd.getInt("usu_id");
                     String nome = rsd.getString("nome");
                     String nacionalidade1 = rsd.getString("nacionalidade");
                     String data = rsd.getString("Data_nasc");
-                    String emaild = rsd.getString("doadores_email");
                     String estado = rsd.getString("refu_estado"); // com a bola
                     // Escreve no arquivo
-                    escritor.write("| nome: " + nome + "                             |");
-                    escritor.write("| email: " + emaild + "                          |");
-                    escritor.write("| data de nascimento: " + data + "               |");
-                    escritor.write("| nacionalidade: " + nacionalidade1 + "          |");
-                    escritor.write("| estado: " + estado + "                         |");
-                    escritor.write("| id: " + id_txt + "                             |");
-                    escritor.write("--------------------------------------------------");
-
+                    escritor.write("----------------------------------------");
+                    escritor.newLine();
+                    escritor.write("nome: " + nome );
+                    escritor.newLine();
+                    escritor.write("data de nascimento: " + data);
+                    escritor.newLine();
+                    escritor.write("nacionalidade: " + nacionalidade1 );
+                    escritor.newLine();
+                    escritor.write("estado: " + estado);
+                    escritor.newLine();
+                    escritor.write("id: " + id_txt );
+                    escritor.newLine();
                 }
+                escritor.write("----------------------------------------");
+                escritor.newLine();
 
             } catch (SQLException e) {
                 System.out.println(e);
