@@ -251,7 +251,8 @@ public class Doadores extends Usuarios {
                 PreparedStatement comandoRelatorio = conexao.prepareStatement(sql_relatorio);
                 ResultSet rsd = comandoRelatorio.executeQuery();
                 escritor.write("Relatorio Doadores");
-                escritor.write("----------------------------------------------");
+                escritor.newLine();
+                
                 while (rsd.next()) {
                     int id_txt = rsd.getInt("usu_id");
                     String nome = rsd.getString("nome");
@@ -259,14 +260,23 @@ public class Doadores extends Usuarios {
                     String data = rsd.getString("Data_nasc");
                     String emaild = rsd.getString("doadores_email");  
                     // Escreve no arquivo
-                    escritor.write("| nome: " + nome + "                             |");
-                    escritor.write("| email: " + emaild + "                          |");
-                    escritor.write("| data de nascimento: " + data + "               |");
-                    escritor.write("| nacionalidade: " + nacionalidade1 + "          |");
-                    escritor.write("| id: " + id_txt + "                             |");
-                    escritor.write("----------------------------------------------");
+                    escritor.write("----------------------------------------");
+                    escritor.newLine();
+                    escritor.write("nome: " + nome);
+                    escritor.newLine();
+                    escritor.write("email: " + emaild );
+                    escritor.newLine();
+                    escritor.write("data de nascimento: " + data);
+                    escritor.newLine();
+                    escritor.write("nacionalidade: " + nacionalidade1);
+                    escritor.newLine();
+                    escritor.write("id: " + id_txt );
+                    escritor.newLine();
+
 
                 }
+                escritor.write("----------------------------------------");
+                escritor.newLine();
 
             } catch (SQLException e) {
                 System.out.println(e);
