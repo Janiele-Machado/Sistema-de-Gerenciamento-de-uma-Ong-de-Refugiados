@@ -236,7 +236,7 @@ public class Voluntarios extends Usuarios {
                 PreparedStatement comandoRelatorio = conexao.prepareStatement(sql_relatorio);
                 ResultSet rsd = comandoRelatorio.executeQuery();
                 escritor.write("Relatorio Voluntarios");
-                escritor.write("----------------------------------------------");
+                escritor.newLine();
                 while (rsd.next()) {
                     int id_txt = rsd.getInt("usu_id");
                     String nome = rsd.getString("nome");
@@ -245,15 +245,25 @@ public class Voluntarios extends Usuarios {
                     String emaild = rsd.getString("volu_email");
                     String habilidade = rsd.getString("volu_habilidades"); // com a bola
                     // Escreve no arquivo
-                    escritor.write("| nome: " + nome + "                             |");
-                    escritor.write("| email: " + emaild + "                          |");
-                    escritor.write("| data de nascimento: " + data + "               |");
-                    escritor.write("| nacionalidade: " + nacionalidade1 + "          |");
-                    escritor.write("| habilidade: " + habilidade + "                    |");
-                    escritor.write("| id: " + id_txt + "                             |");
-                    escritor.write("--------------------------------------------------");
+                    escritor.write("----------------------------------------");
+                    escritor.newLine();
+                    escritor.write("nome: " + nome );
+                    escritor.newLine();
+                    escritor.write("email: " + emaild );
+                    escritor.newLine();
+                    escritor.write("data de nascimento: " + data);
+                    escritor.newLine();
+                    escritor.write("nacionalidade: " + nacionalidade1);
+                    escritor.newLine();
+                    escritor.write("habilidade: " + habilidade );
+                    escritor.newLine();
+                    escritor.write("id: " + id_txt );
+                    escritor.newLine();
+                    
 
                 }
+                escritor.write("----------------------------------------");
+                escritor.newLine();
 
             } catch (SQLException e) {
                 System.out.println(e);
