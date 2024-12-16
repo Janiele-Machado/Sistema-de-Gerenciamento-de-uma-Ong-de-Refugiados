@@ -8,11 +8,25 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Classe para representar objetos do tipo Refugiados, contendo atributos e
+ * métodos relacionados a essa entidade
+ *
+ * @author Janiele
+ * @since 17/11/2024.
+ */
 public class Refugiados extends Usuarios {
 
     private String estado;
     private int refugiados_id;
 
+    /**
+     * Construtor Padrao da classe Refugiados.
+     * @param nome String - recebe o nome
+     * @param data_nasc String - recebe a data de nascimento
+     * @param nacionalidade String - recebe a nacionalidade
+     * @param estado String - recebe o estado (legal ou ilegal)
+     */
     public Refugiados(String nome, String data_nasc, String nacionalidade, String estado) {
         super(nome, data_nasc, nacionalidade);
         this.estado = estado;
@@ -26,6 +40,15 @@ public class Refugiados extends Usuarios {
         this.refugiados_id = refugiados_id;
     }
 
+    /**
+     * Método inserir que é a sobrescrita do método herdado da classe Usuarios,
+     * nessa implementação, esse método faz a conexão com o banco de dados e
+     * insere um novo cadastro de refugiados(inserindo dados na tabela usuarios
+     * e refugiados.
+     *
+     * @throws Exception.
+     * 
+     */
     @Override
     public void inserir() {
         // conecta com o banco  
@@ -77,6 +100,14 @@ public class Refugiados extends Usuarios {
         }
     }
 
+    /**
+     * Método Listar,que é a sobrescrita do método herdado da classe Usuarios,
+     * nessa implementação, esse método faz a conexão com o banco de dados e faz
+     * a listagem de todos os cadastros de Refugiados.
+     *
+     * @throws SQLException.
+     */
+    @Override
     public void listar() {
 
         Connection conexao = new Conexao().getConexao();
@@ -111,6 +142,16 @@ public class Refugiados extends Usuarios {
         }
     }
 
+    /**
+     * Método Listar,que é a sobrecarga do método listar(que faz a listagem de
+     * todos os cadastros de refugiados) e que é void, nessa implementação, esse
+     * método faz a conexão com o banco de dados e recebe como parametro o id
+     * para fazer a consulta especifica de um cadastro de refugiados, e
+     * linstando o mesmo.
+     *
+     * @throws SQLException.
+     * @param id_consulta int - o id especifico do usuario
+     */
     //SOBRECARGA
     public void listar(int id_consulta) {
 
@@ -149,6 +190,17 @@ public class Refugiados extends Usuarios {
         }
 
     }
+
+    /**
+     * Método verificar que faz a conexão com o banco de dados e recebe como
+     * parametro o id, para verificar se ha algum cadastro refugiados com o id
+     * inserido.
+     *
+     * @throws SQLException.
+     * @param id_verificar int - o id para verificar se o cadastro existe
+     * @return boolean - retorna verdadeiro se o cadastro existir ou falso caso
+     * nao exista.
+     */
 
     public boolean verificar(int id_verificar) {
 
@@ -194,6 +246,12 @@ public class Refugiados extends Usuarios {
 
     }
 
+    /**
+     * Método alterar que faz a conexão com o banco de dados e efetua a alteração de
+     * alguns dos cadastros de refugiados.
+     *
+     * @throws SQLException.
+     */
     public void alterar() {
         Connection conexao = new Conexao().getConexao();
         //UPDATE  usuarios  SET nome = "Jane Rodriguez ", Data_nasc= "23/12/1981", nacionalidade ="Coreana" WHERE  usu_id= 4;
@@ -222,6 +280,12 @@ public class Refugiados extends Usuarios {
         }
     }
 
+    /**
+     * Método excluir que faz a conexão com o banco de dados e efetua a exclusão de algum
+     * dos cadastros de refugiados.
+     *
+     * @throws SQLException.
+     */
     public void excluir() {
         Connection conexao = new Conexao().getConexao();
         //DELETE FROM refugiados WHERE fk_usuarios_refu_id= 18
@@ -247,6 +311,12 @@ public class Refugiados extends Usuarios {
         }
 
     }
+    /**
+     * Método relatorio que faz a conexão com o banco de dados e efetua o salvamento de 
+     * todos os cadastros de refugiados em um arquivo de texto.
+     * @throws SQLException.
+     * @throws IOException.
+     */
 
     public void relatorio() {
         Connection conexao = new Conexao().getConexao();
@@ -268,15 +338,15 @@ public class Refugiados extends Usuarios {
                     // Escreve no arquivo
                     escritor.write("----------------------------------------");
                     escritor.newLine();
-                    escritor.write("nome: " + nome );
+                    escritor.write("nome: " + nome);
                     escritor.newLine();
                     escritor.write("data de nascimento: " + data);
                     escritor.newLine();
-                    escritor.write("nacionalidade: " + nacionalidade1 );
+                    escritor.write("nacionalidade: " + nacionalidade1);
                     escritor.newLine();
                     escritor.write("estado: " + estado);
                     escritor.newLine();
-                    escritor.write("id: " + id_txt );
+                    escritor.write("id: " + id_txt);
                     escritor.newLine();
                 }
                 escritor.write("----------------------------------------");
@@ -300,7 +370,5 @@ public class Refugiados extends Usuarios {
             }
         }
     }
-
-
 
 }

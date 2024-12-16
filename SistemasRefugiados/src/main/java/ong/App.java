@@ -230,8 +230,8 @@ public class App {
                             for (int i = 0; i < tipo_usu.length; i++) {
                                 System.out.println((i + 1) + "-" + tipo_usu[i]);
                             }
-                            System.out.println("4 listar tudo");
-                            System.out.println("5 sair da listagem");
+                            System.out.println("4-listar tudo");
+                            System.out.println("5-Sair da listagem");
                             String opc3 = scan.nextLine();
                             int opc3t = Integer.parseInt(opc3);
 
@@ -444,7 +444,7 @@ public class App {
                         }
                     }
                 } else if (opc_principal==7){
-                    System.out.println("Crinado Relatorio");
+                    System.out.println("Criando Relatorio");
                     System.out.println("....");
                     Doadores d7 = new Doadores("s", "0", "b","a");
                     d7.relatorio();
