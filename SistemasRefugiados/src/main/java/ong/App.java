@@ -5,8 +5,32 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import static javax.management.Query.or;
 
+/**
+ * Classe principal do sistema para gerenciamento de refugiados.
+ *
+ * Esta classe é responsável por inicializar a aplicação e coordenar as
+ * principais funcionalidades do sistema, como conexão com o banco de dados,
+ * manipulação de dados e interação com o usuário.
+ *
+ * Funcionalidades principais: Inicializar a aplicação e carregar
+ * configurações básicas. Gerenciar as operações principais relacionadas ao
+ * sistema, como cadastro, listagem, exclusão, consulta e atualização de
+ * informações, além de realizar relátorios e registrar doações.
+ *
+ * @author Janiele
+ * @author Samuel
+ * @author Arthur
+ * @author Matheus Felipe
+ * @version 1.0
+ */
 public class App {
-
+    
+/**
+ * Método Principal que efetua a execução do Sistema.
+ * @param args
+ * @throws Exception 
+ */
+    
     public static void main(String[] args) throws Exception {
         Scanner scan = new Scanner(System.in);
         int opc_principal;
