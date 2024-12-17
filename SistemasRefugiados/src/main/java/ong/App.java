@@ -199,8 +199,8 @@ public class App {
                             case 3:
                                 System.out.println("Para Consultar um cadastro de Refugiado:");
                                 System.out.println("Digite seu id de usuario(caso nao saiba verifique seu id na listagem)");
-                                int id_alt = scan.nextInt();
-                                scan.nextLine();
+                                String id = scan.nextLine();
+                                int id_alt =Integer.parseInt(id) ;
                                 Refugiados rver = new Refugiados(null, null, null, null);
                                 Boolean verc = rver.verificar(id_alt);
                                 if (verc) {
@@ -352,8 +352,8 @@ public class App {
                                     System.out.println("Para Alterar por favor se indentifique: ");
 
                                     System.out.println("Digite seu id de usuario(caso nao saiba verifique seu id na listagem)");
-                                    int id_alt = scan.nextInt();
-                                    scan.nextLine();
+                                    String id = scan.nextLine();
+                                    int id_alt = Integer.parseInt(id);
                                     Refugiados rver = new Refugiados(null, null, null, null);
                                     Boolean verc = rver.verificar(id_alt);
                                     if (verc) {
@@ -420,8 +420,8 @@ public class App {
                             } else if (opc5 == 3) {
                                 System.out.println("Para excluir um cadastro de Refugiado:");
                                 System.out.println("Digite seu id de usuario(caso nao saiba verifique seu id na listagem)");
-                                int id_alt = scan.nextInt();
-                                scan.nextLine();
+                                String id = scan.nextLine();
+                                int id_alt = Integer.parseInt(id);
                                 Refugiados rver = new Refugiados(null, null, null, null);
                                 Boolean verc = rver.verificar(id_alt);
                                 if (verc) {
@@ -443,20 +443,20 @@ public class App {
 
                         }
                     }
-                } else if (opc_principal==7){
+                } else if (opc_principal == 7) {
                     System.out.println("Criando Relatorio");
                     System.out.println("....");
-                    Doadores d7 = new Doadores("s", "0", "b","a");
+                    Doadores d7 = new Doadores("s", "0", "b", "a");
                     d7.relatorio();
-                    Voluntarios v7 = new Voluntarios("0","1","b","c","d");
+                    Voluntarios v7 = new Voluntarios("0", "1", "b", "c", "d");
                     v7.relatorio();
-                    Refugiados r7 = new Refugiados("0","0","0","0");
+                    Refugiados r7 = new Refugiados("0", "0", "0", "0");
                     r7.relatorio();
                     System.out.println("relatorio feito");
 
                 } else if (opc_principal == 8) {
                     System.out.println("Obrigado por utilizar nosso sistema");
-                    
+
                 } else {
                     System.out.println("Digite uma opcao valida,por favor");
                 }
