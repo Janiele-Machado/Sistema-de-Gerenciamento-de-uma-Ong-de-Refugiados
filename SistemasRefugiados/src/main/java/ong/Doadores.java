@@ -10,11 +10,25 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * Classe para representar objetos do tipo Doadores, contendo atributos e
+ * métodos relacionados a essa entidade
+ *
+ * @author Samuel
+ * @since 16/11/2024.
+ */
 public class Doadores extends Usuarios {
 
     private String email;
     private int doadores_id;
 
+    /**
+     * Construtor Padrao da classe Doadores.
+     *
+     * @param nome String - recebe o nome
+     * @param data_nasc String - recebe a data de nascimento
+     * @param email String - recebe email do Doador
+     */
     public Doadores(String nome, String data_nasc, String nacionalidade, String email) {
         super(nome, data_nasc, nacionalidade);
         this.email = email;
@@ -30,8 +44,17 @@ public class Doadores extends Usuarios {
 
     }
 
+    /**
+     * Método inserir que é a sobrescrita do método herdado da classe Usuarios,
+     * nessa implementação, esse método faz a conexão com o banco de dados e
+     * insere um novo cadastro de doadores(inserindo dados na tabela usuarios e
+     * doadores.
+     *
+     * @throws Exception
+     *
+     */
     @Override
-    public void inserir() {
+    public void inserir() throws Exception {
         // conecta com o banco  
         Connection conexao = new Conexao().getConexao();
         // Inserir usuário na tabela 'usuarios' (tabela genérica para usuários)
@@ -79,6 +102,22 @@ public class Doadores extends Usuarios {
         }
     }
 
+    /**
+     * Verifica se existe um doador no banco de dados com o e-mail fornecido e
+     * se o ID fornecido corresponde ao ID associado a esse e-mail.
+     *
+     * Este método realiza uma consulta ao banco de dados para verificar se
+     * existe um registro de doador com o e-mail especificado. Caso exista, ele
+     * compara o ID do doador no banco com o ID fornecido. Se os IDs
+     * coincidirem, o método retorna true, indicando que a verificação foi
+     * bem-sucedida. Caso contrário, retorna false, indicando que o e-mail ou o
+     * ID não correspondem.
+     *
+     * @param email_verificar O e-mail do doador a ser verificado no banco de
+     * dados.
+     * @param id_verificar O ID do doador a ser verificado no banco de dados.
+     * @return true se o e-mail e o ID coincidem; false caso contrário.
+     */
     public boolean verificar(String email_verificar, int id_verificar) {
 
         Connection conexao = new Conexao().getConexao();
@@ -121,9 +160,15 @@ public class Doadores extends Usuarios {
         }
 
     }
-
+    /**
+     * Método Listar,que é a sobrescrita do método herdado da classe Usuarios,
+     * nessa implementação, esse método faz a conexão com o banco de dados e faz
+     * a listagem de todos os cadastros de Doadores.
+     *
+     * @throws SQLException
+     */
     @Override
-    public void listar() {
+    public void listar() throws SQLException {
         Connection conexao = new Conexao().getConexao();
         String sqlListar = "select *from usuarios join  doadores on usu_id= fk_usuarios_doadores_id;";
         try {
@@ -154,9 +199,19 @@ public class Doadores extends Usuarios {
 
         }
     }
-
+    
+     /**
+     * Método Listar,que é a sobrecarga do método listar(que faz a listagem de
+     * todos os cadastros de refugiados) e que é void, nessa implementação, esse
+     * método faz a conexão com o banco de dados e recebe como parametro o email
+     * para fazer a consulta especifica de um cadastro de doador, e
+     * linstando o mesmo.
+     *
+     * @throws SQLException
+     * @param 1_email String  - o email especifico do usuario
+     */
     //SOBRECARGA
-    public void listar(String l_email) {
+    public void listar(String l_email) throws Exception{
         this.email = l_email;
         Connection conexao = new Conexao().getConexao();
         String sqlListart = "select *from usuarios join  doadores on usu_id= fk_usuarios_doadores_id where doadores_email=?";
@@ -190,7 +245,13 @@ public class Doadores extends Usuarios {
         }
 
     }
-
+    
+    /**
+     * Método excluir que faz a conexão com o banco de dados e efetua a exclusão de algum
+     * dos cadastros de doadores.
+     *
+     * @throws SQLException
+     */
     public void excluir() {
         Connection conexao = new Conexao().getConexao();
         String sqlExcluir_doador = "DELETE FROM  doadores WHERE doadores_email= ?";
@@ -214,7 +275,12 @@ public class Doadores extends Usuarios {
         }
 
     }
-
+     /**
+     * Método alterar que faz a conexão com o banco de dados e efetua a alteração de
+     * alguns dos cadastros de doadores.
+     *
+     * @throws SQLException
+     */
     public void alterar() {
         Connection conexao = new Conexao().getConexao();
         String sqlAlterar = "UPDATE  usuarios  SET nome =?, Data_nasc=?, nacionalidade=? WHERE  usu_id=?";
@@ -240,7 +306,12 @@ public class Doadores extends Usuarios {
 
         }
     }
-
+    /**
+     * Método relatorio que faz a conexão com o banco de dados e efetua o salvamento de 
+     * todos os cadastros de doadores em um arquivo de texto.
+     * @throws SQLException
+     * @throws IOException
+     */
     public void relatorio() {
         Connection conexao = new Conexao().getConexao();
         String sql_relatorio = "SELECT * FROM usuarios inner join doadores on usu_id = fk_usuarios_doadores_id;";
@@ -252,27 +323,26 @@ public class Doadores extends Usuarios {
                 ResultSet rsd = comandoRelatorio.executeQuery();
                 escritor.write("Relatorio Doadores");
                 escritor.newLine();
-                
+
                 while (rsd.next()) {
                     int id_txt = rsd.getInt("usu_id");
                     String nome = rsd.getString("nome");
                     String nacionalidade1 = rsd.getString("nacionalidade");
                     String data = rsd.getString("Data_nasc");
-                    String emaild = rsd.getString("doadores_email");  
+                    String emaild = rsd.getString("doadores_email");
                     // Escreve no arquivo
                     escritor.write("----------------------------------------");
                     escritor.newLine();
                     escritor.write("nome: " + nome);
                     escritor.newLine();
-                    escritor.write("email: " + emaild );
+                    escritor.write("email: " + emaild);
                     escritor.newLine();
                     escritor.write("data de nascimento: " + data);
                     escritor.newLine();
                     escritor.write("nacionalidade: " + nacionalidade1);
                     escritor.newLine();
-                    escritor.write("id: " + id_txt );
+                    escritor.write("id: " + id_txt);
                     escritor.newLine();
-
 
                 }
                 escritor.write("----------------------------------------");
