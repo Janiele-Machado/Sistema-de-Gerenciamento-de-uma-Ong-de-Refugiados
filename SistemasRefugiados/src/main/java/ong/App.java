@@ -7,7 +7,7 @@ import static javax.management.Query.or;
 
 public class App {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner scan = new Scanner(System.in);
         int opc_principal;
         int opc1;

@@ -46,11 +46,11 @@ public class Refugiados extends Usuarios {
      * insere um novo cadastro de refugiados(inserindo dados na tabela usuarios
      * e refugiados.
      *
-     * @throws Exception.
+     * @throws Exception
      * 
      */
     @Override
-    public void inserir() {
+    public void inserir() throws Exception {
         // conecta com o banco  
         Connection conexao = new Conexao().getConexao();
         // Inserir usuário na tabela 'usuarios' (tabela genérica para usuários)
@@ -105,10 +105,10 @@ public class Refugiados extends Usuarios {
      * nessa implementação, esse método faz a conexão com o banco de dados e faz
      * a listagem de todos os cadastros de Refugiados.
      *
-     * @throws SQLException.
+     * @throws SQLException
      */
     @Override
-    public void listar() {
+    public void listar() throws SQLException{
 
         Connection conexao = new Conexao().getConexao();
         String sqlListar = "SELECT *FROM usuarios join  refugiados on usu_id = fk_usuarios_refu_id;";
@@ -149,11 +149,11 @@ public class Refugiados extends Usuarios {
      * para fazer a consulta especifica de um cadastro de refugiados, e
      * linstando o mesmo.
      *
-     * @throws SQLException.
+     * @throws SQLException
      * @param id_consulta int - o id especifico do usuario
      */
     //SOBRECARGA
-    public void listar(int id_consulta) {
+    public void listar(int id_consulta) throws SQLException {
 
         this.refugiados_id = id_consulta;
         Connection conexao = new Conexao().getConexao();
@@ -196,13 +196,13 @@ public class Refugiados extends Usuarios {
      * parametro o id, para verificar se ha algum cadastro refugiados com o id
      * inserido.
      *
-     * @throws SQLException.
+     * @throws SQLException
      * @param id_verificar int - o id para verificar se o cadastro existe
      * @return boolean - retorna verdadeiro se o cadastro existir ou falso caso
      * nao exista.
      */
 
-    public boolean verificar(int id_verificar) {
+    public boolean verificar(int id_verificar) throws SQLException {
 
         Connection conexao = new Conexao().getConexao();
         //SELECT fk_usuarios_refu_id FROM refugiados WHERE fk_usuarios_refu_id = 3;
@@ -250,9 +250,9 @@ public class Refugiados extends Usuarios {
      * Método alterar que faz a conexão com o banco de dados e efetua a alteração de
      * alguns dos cadastros de refugiados.
      *
-     * @throws SQLException.
+     * @throws SQLException
      */
-    public void alterar() {
+    public void alterar() throws SQLException {
         Connection conexao = new Conexao().getConexao();
         //UPDATE  usuarios  SET nome = "Jane Rodriguez ", Data_nasc= "23/12/1981", nacionalidade ="Coreana" WHERE  usu_id= 4;
         //UPDATE  refugiados SET refu_estado = "Legal" WHERE fk_usuarios_refu_id= 4;
@@ -284,9 +284,9 @@ public class Refugiados extends Usuarios {
      * Método excluir que faz a conexão com o banco de dados e efetua a exclusão de algum
      * dos cadastros de refugiados.
      *
-     * @throws SQLException.
+     * @throws SQLException
      */
-    public void excluir() {
+    public void excluir() throws SQLException {
         Connection conexao = new Conexao().getConexao();
         //DELETE FROM refugiados WHERE fk_usuarios_refu_id= 18
         //DELETE FROM usuarios WHERE usu_id = 18
@@ -314,11 +314,11 @@ public class Refugiados extends Usuarios {
     /**
      * Método relatorio que faz a conexão com o banco de dados e efetua o salvamento de 
      * todos os cadastros de refugiados em um arquivo de texto.
-     * @throws SQLException.
-     * @throws IOException.
+     * @throws SQLException
+     * @throws IOException
      */
 
-    public void relatorio() {
+    public void relatorio() throws SQLException, IOException {
         Connection conexao = new Conexao().getConexao();
         String sql_relatorio = "select *from usuarios join  refugiados on usu_id=fk_usuarios_refu_id";
         // Caminho do arquivo onde o relatório será salvo

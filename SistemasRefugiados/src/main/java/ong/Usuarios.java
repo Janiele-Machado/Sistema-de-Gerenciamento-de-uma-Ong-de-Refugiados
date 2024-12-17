@@ -18,7 +18,7 @@ public class Usuarios {
         this.nacionalidade = nacionalidade;
     }
 
-    public void inserir() {
+    public void inserir() throws Exception {
 //        grava um usuario no banco
 //        Conexao c = new Conexao();
 //        Connection conexao = c.getConexao();
@@ -38,7 +38,7 @@ public class Usuarios {
         }
     }
 
-    public void listar() {
+    public void listar() throws SQLException {
         Connection conexao = new Conexao().getConexao();
         String sql_listar_uso = "SELECT * FROM  banco_refugiados.usuarios;";
         try {
