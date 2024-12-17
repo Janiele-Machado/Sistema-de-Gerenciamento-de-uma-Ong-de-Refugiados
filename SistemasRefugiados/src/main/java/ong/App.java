@@ -173,53 +173,56 @@ public class App {
                     }
 
                 } else if (opc_principal == 3) { //CONSULTAS
-                    try {
+                    int opc_c = 0;
+                    while (opc_c != 4) {
+                        try {
 
-                        System.out.println("Digite qual usuario deseja consultar ");
-                        for (int i = 0; i < tipo_usu.length; i++) {
-                            System.out.println((i + 1) + "- " + tipo_usu[i]);
+                            System.out.println("Digite qual usuario deseja consultar ");
+                            for (int i = 0; i < tipo_usu.length; i++) {
+                                System.out.println((i + 1) + "- " + tipo_usu[i]);
+                            }
+                            System.out.println("4-voltar");
+                            String opc3 = scan.nextLine();
+                            opc_c = Integer.parseInt(opc3);
+
+                            switch (opc_c) {
+                                case 1:
+                                    System.out.println("digite o email do doador para realizar a consulta");
+                                    String email_c = scan.nextLine();
+                                    Doadores d_c = new Doadores(null, null, null, null);
+                                    d_c.listar(email_c);
+                                    break;
+                                case 2:
+                                    System.out.println("digite o email do Voluntario para realizar a consulta");
+                                    String email_v = scan.nextLine();
+                                    Voluntarios v_l = new Voluntarios(null, null, null, null, null);
+                                    v_l.listar(email_v);
+                                    break;
+                                case 3:
+                                    System.out.println("Para Consultar um cadastro de Refugiado:");
+                                    System.out.println("Digite seu id de usuario(caso nao saiba verifique seu id na listagem)");
+                                    String id = scan.nextLine();
+                                    int id_alt = Integer.parseInt(id);
+                                    Refugiados rver = new Refugiados(null, null, null, null);
+                                    Boolean verc = rver.verificar(id_alt);
+                                    if (verc) {
+
+                                        Refugiados r_consu = new Refugiados(null, null, null, null);
+                                        //r_consu.setRefugiados_id(id_alt);
+                                        r_consu.listar(id_alt);
+                                    }
+                                    break;
+                                case 4:
+                                    System.out.println("...");
+                                    break;
+                                default:
+                                    System.out.println("erro");
+                                    break;
+                            }
+
+                        } catch (NumberFormatException e) {
+                            System.out.println("por favor digite um numero valido");
                         }
-                        System.out.println("4-voltar");
-                        String opc3 = scan.nextLine();
-                        int opc_c = Integer.parseInt(opc3);
-
-                        switch (opc_c) {
-                            case 1:
-                                System.out.println("digite o email do doador para realizar a consulta");
-                                String email_c = scan.nextLine();
-                                Doadores d_c = new Doadores(null, null, null, null);
-                                d_c.listar(email_c);
-                                break;
-                            case 2:
-                                System.out.println("digite o email do Voluntario para realizar a consulta");
-                                String email_v = scan.nextLine();
-                                Voluntarios v_l = new Voluntarios(null, null, null, null, null);
-                                v_l.listar(email_v);
-                                break;
-                            case 3:
-                                System.out.println("Para Consultar um cadastro de Refugiado:");
-                                System.out.println("Digite seu id de usuario(caso nao saiba verifique seu id na listagem)");
-                                String id = scan.nextLine();
-                                int id_alt =Integer.parseInt(id) ;
-                                Refugiados rver = new Refugiados(null, null, null, null);
-                                Boolean verc = rver.verificar(id_alt);
-                                if (verc) {
-
-                                    Refugiados r_consu = new Refugiados(null, null, null, null);
-                                    //r_consu.setRefugiados_id(id_alt);
-                                    r_consu.listar(id_alt);
-                                }
-                                break;
-                            case 4:
-                                System.out.println("...");
-                                break;
-                            default:
-                                System.out.println("erro");
-                                break;
-                        }
-
-                    } catch (NumberFormatException e) {
-                        System.out.println("por favor digite um numero valido");
                     }
 
                 } else if (opc_principal == 4) { //LISTAGENS
