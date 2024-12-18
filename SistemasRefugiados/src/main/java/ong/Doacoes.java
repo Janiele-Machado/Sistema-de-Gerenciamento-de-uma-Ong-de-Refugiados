@@ -4,6 +4,7 @@ package ong;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.ResultSet;
 
 
 
@@ -60,7 +61,27 @@ public class Doacoes {
                     
                     }
            }
-
+    public void listar_doadocao(){
+        Connection conexao = new Conexao().getConexao();
+        String sql_listard = "select *from doadores inner join doacoes on fk_usuarios_doadores_id=fk_doadores_doadores_id;";
+        try{
+            PreparedStatement comando_list = conexao.prepareStatement(sql_listard);
+           ResultSet rsd = comando_list.executeQuery();
+           
+           while(rsd.next()){
+               System.out.println("tipo de doacao: "+ rsd.getString("doacoes_tipo"));
+               System.out.println("quantidade: "+ rsd.getString("doacoes_quant"));
+               System.out.println("data: "+ rsd.getString("doacores_date"));
+               System.out.println("nome do doador: "+ rsd.getString("nome"));
+               System.out.println("id: "+rsd.getInt("fk_doadores_doadores_id"));
+           }
+            
+            
+            
+        }catch(SQLException e){
+            System.out.println("e");
+        }
+    }
                         
                         
                         
