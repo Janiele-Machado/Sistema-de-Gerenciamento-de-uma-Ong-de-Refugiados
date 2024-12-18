@@ -18,16 +18,15 @@ public class Doacoes {
     private String doacoes_quant;
     private String doacoes_date;
     private int doadorid;
-    
-    
+
     /**
-    * Construtor para inicializar os detalhes de uma doação.
-    * 
-    * @param doacoes_tipo O tipo de doação (ex: alimentos, roupas, etc.)
-    * @param doacoes_quant A quantidade da doação
-    * @param doacoes_date A data da doação
-    * @param doadorid O ID do doador que está fazendo a doação
-    */
+     * Construtor para inicializar os detalhes de uma doação.
+     *
+     * @param doacoes_tipo O tipo de doação (ex: alimentos, roupas, etc.)
+     * @param doacoes_quant A quantidade da doação
+     * @param doacoes_date A data da doação
+     * @param doadorid O ID do doador que está fazendo a doação
+     */
     public Doacoes(String doacoes_tipo, String doacoes_quant, String doacoes_date, int doadorid) {
         this.doacoes_tipo = doacoes_tipo;
         this.doacoes_quant = doacoes_quant;
@@ -40,15 +39,16 @@ public class Doacoes {
         doadorid = dd_id;
 
     }
-    
+
     /**
-    * Insere uma nova doação no banco de dados.
-    * Realiza uma transação para garantir a consistência dos dados. 
-    * Se a inserção for bem-sucedida, confirma a transação. Caso contrário, desfaz a transação.
-    * 
-    * @throws SQLException Se ocorrer um erro ao conectar ao banco de dados ou ao executar a consulta.
-    */
-    public void inserir() {
+     * Insere uma nova doação no banco de dados. Realiza uma transação para
+     * garantir a consistência dos dados. Se a inserção for bem-sucedida,
+     * confirma a transação. Caso contrário, desfaz a transação.
+     *
+     * @throws SQLException Se ocorrer um erro ao conectar ao banco de dados ou
+     * ao executar a consulta.
+     */
+    public void inserir() throws Exception {
         Connection conexao = new Conexao().getConexao();
         String sqldoacao = "INSERT INTO doacoes (doacoes_tipo, doacoes_quant ,doacoes_date, fk_doadores_doadores_id) VALUES(?,?,?,?)";
 
@@ -81,7 +81,16 @@ public class Doacoes {
         }
     }
 
-    public void listar_doadocao() {
+    /**
+     * Lista todas as doações no banco de dados, incluindo as informações sobre
+     * os doadores. A consulta realiza um JOIN entre as tabelas de doadores e
+     * doações e exibe o tipo, quantidade, data da doação e o e-mail e ID do
+     * doador.
+     *
+     * @throws Exception Se ocorrer um erro ao conectar ao banco de dados ou ao
+     * executar a consulta.
+     */
+    public void listar_doadocao() throws Exception {
         Connection conexao = new Conexao().getConexao();
         String sql_listard = "select *from doadores inner join doacoes on fk_usuarios_doadores_id=fk_doadores_doadores_id;";
         try {
@@ -100,6 +109,16 @@ public class Doacoes {
 
         } catch (SQLException e) {
             System.out.println("e");
+        } finally {
+
+            try {
+                if (conexao != null && !conexao.isClosed()) {
+                    conexao.close();
+                }
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+
         }
     }
 
