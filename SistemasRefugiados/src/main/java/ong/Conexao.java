@@ -2,6 +2,7 @@
 package ong;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 
 /**
@@ -28,7 +29,7 @@ public class Conexao {
     /**
      * Senha associada ao usuário para se conectar ao banco de dados.
      */
-    public static final String SENHA = "....";
+    public static final String SENHA = "samuel1234";
     
     /**
      * Estabelece uma conexão com o banco de dados MySQL.
@@ -40,17 +41,18 @@ public class Conexao {
      * @throws Exception Se ocorrer um erro ao tentar estabelecer a conexão
      *                     com o banco de dados.
      */
-    public Connection getConexao()throws Exception {
+    public Connection getConexao()throws SQLException {
         try {
             Connection conexao = DriverManager.getConnection(SERVIDOR, USUARIO, SENHA);
             if (conexao != null) {
                 System.out.println("Conexão bem-sucedida com o banco de dados!");
             }
             return conexao;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Erro ao conectar: " + e.getMessage());
+            throw e;  // Relança a exceção para que ela possa ser tratada externamente
         }
-        return null;
+        
     }
 }
     

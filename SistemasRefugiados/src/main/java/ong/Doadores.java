@@ -118,7 +118,7 @@ public class Doadores extends Usuarios {
      * @param id_verificar O ID do doador a ser verificado no banco de dados.
      * @return true se o e-mail e o ID coincidem; false caso contrário.
      */
-    public boolean verificar(String email_verificar, int id_verificar) {
+    public boolean verificar(String email_verificar, int id_verificar) throws SQLException {
 
         Connection conexao = new Conexao().getConexao();
         String sqlVerificar = "SELECT fk_usuarios_doadores_id  FROM doadores WHERE doadores_email= ?";
@@ -252,7 +252,7 @@ public class Doadores extends Usuarios {
      *
      * @throws SQLException
      */
-    public void excluir() {
+    public void excluir() throws SQLException {
         Connection conexao = new Conexao().getConexao();
         String sqlExcluir_doador = "DELETE FROM  doadores WHERE doadores_email= ?";
         String sqlExcluir_usu = "DELETE FROM usuarios WHERE nome= ?";
@@ -281,7 +281,7 @@ public class Doadores extends Usuarios {
      *
      * @throws SQLException
      */
-    public void alterar() {
+    public void alterar() throws SQLException {
         Connection conexao = new Conexao().getConexao();
         String sqlAlterar = "UPDATE  usuarios  SET nome =?, Data_nasc=?, nacionalidade=? WHERE  usu_id=?";
         String sqlAlterardoadores = "UPDATE  doadores SET doadores_email=? WHERE fk_usuarios_doadores_id=?";
@@ -312,7 +312,7 @@ public class Doadores extends Usuarios {
      * @throws SQLException
      * @throws IOException
      */
-    public void relatorio() {
+    public void relatorio() throws SQLException {
         Connection conexao = new Conexao().getConexao();
         String sql_relatorio = "SELECT * FROM usuarios inner join doadores on usu_id = fk_usuarios_doadores_id;";
         // Caminho do arquivo onde o relatório será salvo

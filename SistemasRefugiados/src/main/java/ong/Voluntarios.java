@@ -30,7 +30,7 @@ public class Voluntarios extends Usuarios {
     }
 
     @Override
-    public void inserir() {
+    public void inserir() throws SQLException {
         // conecta com o banco  
         Connection conexao = new Conexao().getConexao();
         // Inserir usuário na tabela 'usuarios' (tabela genérica para usuários)
@@ -81,7 +81,7 @@ public class Voluntarios extends Usuarios {
         }
     }
 
-    public void listar() {
+    public void listar() throws SQLException {
 
         Connection conexao = new Conexao().getConexao();
         String sqlListar = "SELECT *FROM usuarios join  voluntarios on usu_id = fk_usuarios_volu_id;";
@@ -117,7 +117,7 @@ public class Voluntarios extends Usuarios {
     }
 
     //SOBRECARGA
-    public void listar(String l_email) {
+    public void listar(String l_email) throws SQLException {
         this.email = l_email;
         Connection conexao = new Conexao().getConexao();
         String sqlListart = "select *from usuarios join voluntarios on usu_id= fk_usuarios_volu_id where volu_email= ?";
@@ -153,7 +153,7 @@ public class Voluntarios extends Usuarios {
 
     }
 
-    public boolean verificar(String email_verificar, int id_verificar) {
+    public boolean verificar(String email_verificar, int id_verificar) throws SQLException {
 
         Connection conexao = new Conexao().getConexao();
         //SELECT fk_usuarios_volu_id  FROM voluntarios WHERE volu_email= "dol@gmail.com"
@@ -197,7 +197,7 @@ public class Voluntarios extends Usuarios {
 
     }
 
-    public void alterar() {
+    public void alterar() throws SQLException {
         Connection conexao = new Conexao().getConexao();
         String sqlAlterar = "UPDATE  usuarios  SET nome =?, Data_nasc=?, nacionalidade=? WHERE  usu_id=?";
         //UPDATE  voluntarios SET volu_email=?,volu_habilidades =? WHERE fk_usuarios_volu_id=?
@@ -226,7 +226,7 @@ public class Voluntarios extends Usuarios {
         }
     }
 
-    public void relatorio() {
+    public void relatorio() throws SQLException {
         Connection conexao = new Conexao().getConexao();
         String sql_relatorio = "SELECT * FROM usuarios inner join voluntarios on usu_id = fk_usuarios_volu_id;";
         // Caminho do arquivo onde o relatório será salvo
