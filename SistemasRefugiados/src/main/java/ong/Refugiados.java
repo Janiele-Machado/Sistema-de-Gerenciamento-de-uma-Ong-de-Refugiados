@@ -22,6 +22,7 @@ public class Refugiados extends Usuarios {
 
     /**
      * Construtor Padrao da classe Refugiados.
+     *
      * @param nome String - recebe o nome
      * @param data_nasc String - recebe a data de nascimento
      * @param nacionalidade String - recebe a nacionalidade
@@ -46,8 +47,9 @@ public class Refugiados extends Usuarios {
      * insere um novo cadastro de refugiados(inserindo dados na tabela usuarios
      * e refugiados.
      *
-     * @throws Exception
-     * 
+     * @throws Exception Se ocorrer um erro ao tentar estabelecer a conexão com
+     * o banco de dados.
+     *
      */
     @Override
     public void inserir() throws Exception {
@@ -105,10 +107,11 @@ public class Refugiados extends Usuarios {
      * nessa implementação, esse método faz a conexão com o banco de dados e faz
      * a listagem de todos os cadastros de Refugiados.
      *
-     * @throws SQLException
+     * @throws SQLException Se ocorrer um erro ao tentar estabelecer a conexão
+     * com o banco de dados.
      */
     @Override
-    public void listar() throws SQLException{
+    public void listar() throws SQLException {
 
         Connection conexao = new Conexao().getConexao();
         String sqlListar = "SELECT *FROM usuarios join  refugiados on usu_id = fk_usuarios_refu_id;";
@@ -149,7 +152,8 @@ public class Refugiados extends Usuarios {
      * para fazer a consulta especifica de um cadastro de refugiados, e
      * linstando o mesmo.
      *
-     * @throws SQLException
+     * @throws SQLException Se ocorrer um erro ao tentar estabelecer a conexão
+     * com o banco de dados.
      * @param id_consulta int - o id especifico do usuario
      */
     //SOBRECARGA
@@ -196,12 +200,12 @@ public class Refugiados extends Usuarios {
      * parametro o id, para verificar se ha algum cadastro refugiados com o id
      * inserido.
      *
-     * @throws SQLException
+     * @throws SQLException Se ocorrer um erro ao tentar estabelecer a conexão
+     * com o banco de dados.
      * @param id_verificar int - o id para verificar se o cadastro existe
      * @return boolean - retorna verdadeiro se o cadastro existir ou falso caso
      * nao exista.
      */
-
     public boolean verificar(int id_verificar) throws SQLException {
 
         Connection conexao = new Conexao().getConexao();
@@ -247,10 +251,11 @@ public class Refugiados extends Usuarios {
     }
 
     /**
-     * Método alterar que faz a conexão com o banco de dados e efetua a alteração de
-     * alguns dos cadastros de refugiados.
+     * Método alterar que faz a conexão com o banco de dados e efetua a
+     * alteração de alguns dos cadastros de refugiados.
      *
-     * @throws SQLException
+     * @throws SQLException Se ocorrer um erro ao tentar estabelecer a conexão
+     * com o banco de dados.
      */
     public void alterar() throws SQLException {
         Connection conexao = new Conexao().getConexao();
@@ -281,10 +286,11 @@ public class Refugiados extends Usuarios {
     }
 
     /**
-     * Método excluir que faz a conexão com o banco de dados e efetua a exclusão de algum
-     * dos cadastros de refugiados.
+     * Método excluir que faz a conexão com o banco de dados e efetua a exclusão
+     * de algum dos cadastros de refugiados.
      *
-     * @throws SQLException
+     * @throws SQLException Se ocorrer um erro ao tentar estabelecer a conexão
+     * com o banco de dados.
      */
     public void excluir() throws SQLException {
         Connection conexao = new Conexao().getConexao();
@@ -311,11 +317,15 @@ public class Refugiados extends Usuarios {
         }
 
     }
+
     /**
-     * Método relatorio que faz a conexão com o banco de dados e efetua o salvamento de 
-     * todos os cadastros de refugiados em um arquivo de texto.
-     * @throws SQLException
-     * @throws IOException
+     * Método relatorio que faz a conexão com o banco de dados e efetua o
+     * salvamento de todos os cadastros de refugiados em um arquivo de texto.
+     *
+     * @throws SQLException Se ocorrer um erro ao tentar estabelecer a conexão
+     * com o banco de dados.
+     * @throws IOException Se ocorrer um erro ao tentar criar o arquivo de
+     * texto.
      */
 
     public void relatorio() throws SQLException, IOException {

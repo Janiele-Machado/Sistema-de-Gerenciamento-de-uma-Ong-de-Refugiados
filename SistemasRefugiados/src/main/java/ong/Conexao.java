@@ -29,7 +29,7 @@ public class Conexao {
     /**
      * Senha associada ao usuário para se conectar ao banco de dados.
      */
-    public static final String SENHA = "samuel1234";
+    public static final String SENHA = "******";
     
     /**
      * Estabelece uma conexão com o banco de dados MySQL.
