@@ -56,7 +56,7 @@ public class App {
                 System.out.println("|1-Cadastro de usuarios     |");
                 System.out.println("|2-Registrar doacoes        |");
                 System.out.println("|3-Consultar Usuarios       |");
-                System.out.println("|4-Listagem de Usuarios     |");
+                System.out.println("|4-Listagens                |");
                 System.out.println("|5-Editar Cadastros         |");
                 System.out.println("|6-Excluir Cadastros        |");
                 System.out.println("|7-Relatorio                |");
@@ -258,7 +258,8 @@ public class App {
                                 System.out.println((i + 1) + "-" + tipo_usu[i]);
                             }
                             System.out.println("4-listar tudo");
-                            System.out.println("5-Sair da listagem");
+                            System.out.println("5-listar doacoes");
+                            System.out.println("6-Sair da listagem");
                             String opc3 = scan.nextLine();
                             int opc3t = Integer.parseInt(opc3);
 
@@ -278,7 +279,10 @@ public class App {
                                 Usuarios uso = new Usuarios(null, null, null);
                                 uso.listar();
 
-                            } else if (opc3t == 5) {
+                            }else if(opc3t==5){
+                                Doacoes dd = new Doacoes(null,null,null,0);
+                                dd.listar_doadocao();
+                            } else if (opc3t == 6) {
                                 System.out.println("...");
                                 break;
 

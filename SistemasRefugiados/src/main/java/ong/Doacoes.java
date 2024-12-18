@@ -35,7 +35,7 @@ public class Doacoes {
             try{
                 // Começar uma transação para garantir consistência
                         conexao.setAutoCommit(false);
-                        PreparedStatement comandoDoacoes = conexao.prepareStatement (sqldoacao, PreparedStatement.RETURN_GENERATED_KEYS);
+                        PreparedStatement comandoDoacoes = conexao.prepareStatement (sqldoacao);
                         comandoDoacoes.setString(1, this.doacoes_tipo);
                         comandoDoacoes.setString(2, this.doacoes_quant);
                         comandoDoacoes.setString(3, this.doacoes_date);
@@ -71,11 +71,12 @@ public class Doacoes {
            while(rsd.next()){
                System.out.println("tipo de doacao: "+ rsd.getString("doacoes_tipo"));
                System.out.println("quantidade: "+ rsd.getString("doacoes_quant"));
-               System.out.println("data: "+ rsd.getString("doacores_date"));
-               System.out.println("nome do doador: "+ rsd.getString("nome"));
+               System.out.println("data: "+ rsd.getString("doacoes_date"));
+               System.out.println("email do doador: "+ rsd.getString("doadores_email"));
                System.out.println("id: "+rsd.getInt("fk_doadores_doadores_id"));
            }
             
+           comando_list.close();
             
             
         }catch(SQLException e){
