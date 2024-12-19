@@ -167,7 +167,7 @@ public class App {
                             String dd_aux_idt = scan.nextLine();
                             int dd_aux_id = Integer.parseInt(dd_aux_idt);
 
-                            // futuramente farei um metodo para verificar 
+                             
                             Doadores d1 = new Doadores(null, null, null, email_ins2);
                             boolean verc = d1.verificar(email_ins2, dd_aux_id);
 
@@ -319,7 +319,8 @@ public class App {
                                     System.out.println("Digite seu email de doador");
                                     String emailalt = scan.nextLine();
                                     System.out.println("Digite seu id");
-                                    int id_alt = scan.nextInt();
+                                    String id_altaux =scan.nextLine();
+                                    int id_alt = Integer.parseInt(id_altaux);
                                     scan.nextLine();
                                     Doadores dver = new Doadores(null, null, null, emailalt);
                                     Boolean verc = dver.verificar(emailalt, id_alt);
@@ -351,8 +352,8 @@ public class App {
                                     System.out.println("Digite seu email de voluntario");
                                     String emailalt = scan.nextLine();
                                     System.out.println("Digite seu id");
-                                    int id_alt = scan.nextInt();
-                                    scan.nextLine();
+                                    String id_altaux = scan.nextLine();
+                                    int id_alt = Integer.parseInt(id_altaux);
                                     Voluntarios vver = new Voluntarios(null, null, null, emailalt, null);
                                     Boolean verc = vver.verificar(emailalt, id_alt);
                                     if (verc) {
