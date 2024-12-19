@@ -483,6 +483,8 @@ public class App {
                     v7.relatorio();
                     Refugiados r7 = new Refugiados("0", "0", "0", "0");
                     r7.relatorio();
+                    Doacoes dd7 = new Doacoes(null,null,null,0);
+                    dd7.relatorio();
                     System.out.println("relatorio feito");
 
                 } else if (opc_principal == 8) {
