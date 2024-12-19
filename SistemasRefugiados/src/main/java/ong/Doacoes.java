@@ -1,5 +1,8 @@
 package ong;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -122,4 +125,62 @@ public class Doacoes {
         }
     }
 
+    /**
+     * Método relatorio que faz a conexão com o banco de dados e efetua o
+     * salvamento de todos os cadastros de doadores em um arquivo de texto.
+     *
+     * @throws SQLException
+     * @throws IOException
+     */
+    public void relatorio() throws SQLException, IOException {
+        Connection conexao = new Conexao().getConexao();
+        String sql_r = "select *from doadores inner join doacoes on fk_usuarios_doadores_id=fk_doadores_doadores_id";
+        String arquivo = "relatorio.txt";
+        try (BufferedWriter escritor = new BufferedWriter(new FileWriter(arquivo, true))) {
+            try {
+                PreparedStatement comando_rel = conexao.prepareStatement(sql_r);
+                ResultSet rsr = comando_rel.executeQuery();
+                escritor.write("Relatorio de Doaçoes");
+                escritor.newLine();
+                while (rsr.next()) {
+                    int id = rsr.getInt("fk_doadores_doadores_id");
+                    String email = rsr.getString("doadores_email");
+                    String dd_tipo = rsr.getString("doacoes_tipo");
+                    String dd_quant = rsr.getString("doacoes_quant");
+                    String dd_date = rsr.getString("doacoes_date");
+
+                    escritor.write("-------------------------------------------");
+                    escritor.newLine();
+                    escritor.write("email do doador:" + email);
+                    escritor.newLine();
+                    escritor.write("id do doador" + id);
+                    escritor.newLine();
+                    escritor.write("tipo da doaçao: " + dd_tipo);
+                    escritor.newLine();
+                    escritor.write("quantidade:" + dd_quant);
+                    escritor.newLine();
+                    escritor.write("data da doaçao: " + dd_date);
+                    escritor.newLine();
+
+                }
+                escritor.write("----------------------------------------");
+                escritor.newLine();
+
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        } catch (IOException e) {
+            System.out.println(e);
+        } finally {
+            try {
+                // Fecha a conexão com o banco de dados
+                if (conexao != null && !conexao.isClosed()) {
+                    conexao.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Erro ao fechar a conexão: " + e.getMessage());
+            }
+        }
+
+    }
 }
