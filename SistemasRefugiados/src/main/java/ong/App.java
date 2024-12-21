@@ -448,6 +448,19 @@ public class App {
                                 }
 
                             } else if (opc5 == 2) {
+                                System.out.println("digite o nome do usuario que deseja excluir");
+                                String nome_excl = scan.nextLine();
+                                System.out.println("digite o email de voluntario");
+                                String email_excl = scan.nextLine();
+                                System.out.println("Digite o id de voluntario");
+                                String dd_idt = scan.nextLine();
+                                int dd_id = Integer.parseInt(dd_idt);
+                                
+                                Voluntarios v3 = new Voluntarios(nome_excl, null, null, email_excl,null);
+                                if (v3.verificar(email_excl, dd_id)) {
+                                    v3.excluir();
+                                }
+                                
 
                             } else if (opc5 == 3) {
                                 System.out.println("Para excluir um cadastro de Refugiado:");
