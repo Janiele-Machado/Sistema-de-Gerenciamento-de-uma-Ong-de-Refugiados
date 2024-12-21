@@ -255,6 +255,35 @@ public class Voluntarios extends Usuarios {
     }
 
     /**
+     * Exclui um voluntário do banco de dados.
+     * Remove o registro do voluntário da tabela `voluntarios` com base no email e
+     * também remove o registro correspondente na tabela `usuarios` com base no nome.
+     *
+     * @throws SQLException Em caso de erro ao acessar ou modificar o banco de dados.
+     */
+    public void excluir() throws SQLException {
+        Connection conexao = new Conexao().getConexao();
+        String sqlExcluir_volu = "DELETE FROM voluntarios WHERE volu_email= ?";
+        String sqlExcluir_usu = "DELETE FROM usuarios WHERE nome= ?";
+        try {
+            PreparedStatement comandoExcluir = conexao.prepareStatement(sqlExcluir_volu);
+            comandoExcluir.setString(1, this.email);
+            comandoExcluir.executeUpdate();
+
+            PreparedStatement comando_excluir_d = conexao.prepareStatement(sqlExcluir_usu);
+            comando_excluir_d.setString(1, this.nome);
+            comando_excluir_d.executeUpdate();
+
+            System.out.println("Voluntario apagado com sucesso");
+            comandoExcluir.close();
+            comando_excluir_d.close();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /**
      * Gera um relatório de todos os voluntários e salva em um arquivo de texto.
      *
      * @throws SQLException Em caso de erro ao acessar o banco de dados.
