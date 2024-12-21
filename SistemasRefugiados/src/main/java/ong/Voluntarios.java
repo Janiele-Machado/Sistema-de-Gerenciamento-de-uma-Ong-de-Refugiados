@@ -9,8 +9,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Classe que representa os voluntários da ONG.
+ * A Classe "Voluntarios" é uma subclasse que representa os voluntários da ONG.
+ * Representa quem vai prestar serviços na ong, ela é uma classe dependente
+ * da classe "Usuarios" que é a classe mãe.
+ * 
+ * Ela herda varios atributos de Usuarios, como nome, data de nascimento e
+ * nacionalidade.
+ * Todos os outros métodos estão comentados e explicados no decorrer da classe.
  * Estende a classe {@link Usuarios}.
+ * 
+ * @author Arthur
+ * @since 16/11/2024
  */
 public class Voluntarios extends Usuarios {
 
