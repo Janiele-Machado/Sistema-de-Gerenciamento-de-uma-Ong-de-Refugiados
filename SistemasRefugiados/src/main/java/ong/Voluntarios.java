@@ -253,6 +253,7 @@ public class Voluntarios extends Usuarios {
             comandoAlterardd.setString(1, this.email);
             comandoAlterardd.setString(2, this.habilidades);
             comandoAlterardd.setInt(3, this.volu_id);
+            comandoAlterardd.executeUpdate();
 
             System.out.println("alterado com sucesso");
             comandoAlterar.close();

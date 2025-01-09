@@ -274,6 +274,7 @@ public class Refugiados extends Usuarios {
             PreparedStatement comandoAlterardd = conexao.prepareStatement(sqlAlterarRefu);
             comandoAlterardd.setString(1, this.estado);
             comandoAlterardd.setInt(2, this.refugiados_id);
+            comandoAlterardd.executeUpdate();
 
             System.out.println("alterado com sucesso");
             comandoAlterar.close();

@@ -67,7 +67,7 @@ public class Doacoes {
 
             // Confirmar a transação
             conexao.commit();
-            System.out.println("Doador inserido com sucesso!");
+            System.out.println("Doacao inserida com sucesso!");
 
             // Fechar as conexões
             comandoDoacoes.close();

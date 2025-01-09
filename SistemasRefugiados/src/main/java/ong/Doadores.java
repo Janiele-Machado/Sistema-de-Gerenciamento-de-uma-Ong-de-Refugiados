@@ -296,6 +296,7 @@ public class Doadores extends Usuarios {
             PreparedStatement comandoAlterardd = conexao.prepareStatement(sqlAlterardoadores);
             comandoAlterardd.setString(1, this.email);
             comandoAlterardd.setInt(2, this.doadores_id);
+            comandoAlterardd.executeUpdate();
 
             System.out.println("alterado com sucesso");
             comandoAlterar.close();
