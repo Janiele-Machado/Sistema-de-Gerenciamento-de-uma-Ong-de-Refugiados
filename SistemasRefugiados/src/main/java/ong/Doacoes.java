@@ -50,6 +50,7 @@ public class Doacoes {
      *
      * @throws SQLException Se ocorrer um erro ao conectar ao banco de dados ou
      * ao executar a consulta.
+     * @throws Exception Se ocorrer algum erro durante o processo de inserção.
      */
     public void inserir() throws Exception {
         Connection conexao = new Conexao().getConexao();
@@ -92,6 +93,7 @@ public class Doacoes {
      *
      * @throws Exception Se ocorrer um erro ao conectar ao banco de dados ou ao
      * executar a consulta.
+     *
      */
     public void listar_doadocao() throws Exception {
         Connection conexao = new Conexao().getConexao();
@@ -129,8 +131,8 @@ public class Doacoes {
      * Método relatorio que faz a conexão com o banco de dados e efetua o
      * salvamento de todos os cadastros de doadores em um arquivo de texto.
      *
-     * @throws SQLException
-     * @throws IOException
+     * @throws SQLException Se ocorrer um erro ao consultar o banco de dados.
+     * @throws IOException Se ocorrer um erro ao gravar o relatório no arquivo.
      */
     public void relatorio() throws SQLException, IOException {
         Connection conexao = new Conexao().getConexao();

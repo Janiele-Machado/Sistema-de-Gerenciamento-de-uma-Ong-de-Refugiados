@@ -27,6 +27,7 @@ public class Doadores extends Usuarios {
      *
      * @param nome String - recebe o nome
      * @param data_nasc String - recebe a data de nascimento
+     * @param nacionalidade Nacionalidade do doador.
      * @param email String - recebe email do Doador
      */
     public Doadores(String nome, String data_nasc, String nacionalidade, String email) {
@@ -35,6 +36,11 @@ public class Doadores extends Usuarios {
 
     }
 
+    /**
+     * Método para obter o ID do doador.
+     *
+     * @return ID do doador.
+     */
     public int getDoadores_id() {
         return doadores_id;
     }
@@ -50,7 +56,8 @@ public class Doadores extends Usuarios {
      * insere um novo cadastro de doadores(inserindo dados na tabela usuarios e
      * doadores.
      *
-     * @throws Exception
+     * @throws SQLException Se ocorrer um erro ao inserir os dados no banco de
+     * dados.
      *
      */
     @Override
@@ -117,6 +124,7 @@ public class Doadores extends Usuarios {
      * dados.
      * @param id_verificar O ID do doador a ser verificado no banco de dados.
      * @return true se o e-mail e o ID coincidem; false caso contrário.
+     * @throws SQLException Se ocorrer um erro ao consultar o banco de dados.
      */
     public boolean verificar(String email_verificar, int id_verificar) throws SQLException {
 
@@ -160,12 +168,13 @@ public class Doadores extends Usuarios {
         }
 
     }
+
     /**
      * Método Listar,que é a sobrescrita do método herdado da classe Usuarios,
      * nessa implementação, esse método faz a conexão com o banco de dados e faz
      * a listagem de todos os cadastros de Doadores.
      *
-     * @throws SQLException
+     * @throws SQLException Se houver um erro ao consultar o banco de dados
      */
     @Override
     public void listar() throws SQLException {
@@ -199,20 +208,21 @@ public class Doadores extends Usuarios {
 
         }
     }
-    
-     /**
+
+    /**
      * Método Listar,que é a sobrecarga do método listar(que faz a listagem de
      * todos os cadastros de refugiados) e que é void, nessa implementação, esse
      * método faz a conexão com o banco de dados e recebe como parametro o email
-     * para fazer a consulta especifica de um cadastro de doador, e
-     * linstando o mesmo.
+     * para fazer a consulta especifica de um cadastro de doador, e linstando o
+     * mesmo.
      *
-     * @throws SQLException
-     * @param 1_email String  - o email especifico do usuario
+     * @param d_email String - o email especifico do usuario
+     * @throws SQLException Se houver um erro ao acessar o banco de dados.
+     *
      */
     //SOBRECARGA
-    public void listar(String l_email) throws Exception{
-        this.email = l_email;
+    public void listar(String d_email) throws Exception {
+        this.email = d_email;
         Connection conexao = new Conexao().getConexao();
         String sqlListart = "select *from usuarios join  doadores on usu_id= fk_usuarios_doadores_id where doadores_email=?";
         try {
@@ -245,10 +255,10 @@ public class Doadores extends Usuarios {
         }
 
     }
-    
+
     /**
-     * Método excluir que faz a conexão com o banco de dados e efetua a exclusão de algum
-     * dos cadastros de doadores.
+     * Método excluir que faz a conexão com o banco de dados e efetua a exclusão
+     * de algum dos cadastros de doadores.
      *
      * @throws SQLException
      */
@@ -275,9 +285,10 @@ public class Doadores extends Usuarios {
         }
 
     }
-     /**
-     * Método alterar que faz a conexão com o banco de dados e efetua a alteração de
-     * alguns dos cadastros de doadores.
+
+    /**
+     * Método alterar que faz a conexão com o banco de dados e efetua a
+     * alteração de alguns dos cadastros de doadores.
      *
      * @throws SQLException
      */
@@ -307,11 +318,13 @@ public class Doadores extends Usuarios {
 
         }
     }
+
     /**
-     * Método relatorio que faz a conexão com o banco de dados e efetua o salvamento de 
-     * todos os cadastros de doadores em um arquivo de texto.
-     * @throws SQLException
-     * @throws IOException
+     * Método relatorio que faz a conexão com o banco de dados e efetua o
+     * salvamento de todos os cadastros de doadores em um arquivo de texto.
+     *
+     * @throws SQLException Se ocorrer um erro ao acessar o banco de dados.
+     * 
      */
     public void relatorio() throws SQLException {
         Connection conexao = new Conexao().getConexao();

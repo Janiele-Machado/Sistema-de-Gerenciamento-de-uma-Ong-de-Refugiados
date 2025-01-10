@@ -42,14 +42,12 @@ public class Refugiados extends Usuarios {
     }
 
     /**
-     * Método inserir que é a sobrescrita do método herdado da classe Usuarios,
-     * nessa implementação, esse método faz a conexão com o banco de dados e
-     * insere um novo cadastro de refugiados(inserindo dados na tabela usuarios
-     * e refugiados.
+     * Insere um novo registro de refugiado no banco de dados, realizando
+     * inserções nas tabelas 'usuarios' e 'refugiados'. Esse método sobrescreve
+     * a implementação da classe pai {@link Usuarios}.
      *
      * @throws Exception Se ocorrer um erro ao tentar estabelecer a conexão com
-     * o banco de dados.
-     *
+     * o banco de dados ou durante a execução das instruções SQL. *
      */
     @Override
     public void inserir() throws Exception {
@@ -328,7 +326,6 @@ public class Refugiados extends Usuarios {
      * @throws IOException Se ocorrer um erro ao tentar criar o arquivo de
      * texto.
      */
-
     public void relatorio() throws SQLException, IOException {
         Connection conexao = new Conexao().getConexao();
         String sql_relatorio = "select *from usuarios join  refugiados on usu_id=fk_usuarios_refu_id";

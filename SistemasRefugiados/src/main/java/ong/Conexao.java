@@ -29,7 +29,7 @@ public class Conexao {
     /**
      * Senha associada ao usuário para se conectar ao banco de dados.
      */
-    public static final String SENHA = "******";
+    public static final String SENHA = ".........";
     
     /**
      * Estabelece uma conexão com o banco de dados MySQL.
@@ -38,7 +38,7 @@ public class Conexao {
      * Caso contrário, exibe o erro ocorrido ao tentar estabelecer a conexão.
      * 
      * @return Retorna a conexão com o banco de dados, ou null se ocorrer erro.
-     * @throws Exception Se ocorrer um erro ao tentar estabelecer a conexão
+     * @throws SQLException Se ocorrer um erro ao tentar estabelecer a conexão
      *                     com o banco de dados.
      */
     public Connection getConexao()throws SQLException {
